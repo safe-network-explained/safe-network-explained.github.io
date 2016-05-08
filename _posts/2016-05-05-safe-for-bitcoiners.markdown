@@ -2,6 +2,7 @@
 layout: post
 title:  "Safe Network explained using bitcoin terminology"
 date:   2016-05-05 00:00:00 +0000
+updated: 2016-05-10 00:00:00 +0000
 categories: bitcoin
 ---
 If you already know how bitcoin works, it makes sense to build on that knowledge when trying to understand SAFE rather than start from scratch.
@@ -275,7 +276,7 @@ Is the safe network likely to face similar issues of farmer centralization and i
 
 Firstly, this is a speculative section. Nobody can predict the future, although we can make fair guesses.
 
-It's extremely likely that if the safe network is successful it will have enterprise-level involvement. This will probably make the small-time farmers using their home pc and internet connection uncompetitive.
+It's extremely likely that if the safe network is successful it will have enterprise-level involvement. This will probably make the small-time farmers using their home pc and internet connection uncompetitive. Whether being 'uncompetitive' will prevent small users participating in farming is yet to be seen; after all, there are still plenty of 'irrational' bitcoiners running full nodes with little or no economic incentive.
 
 If the safe network becomes primarily centralized to a small number of giant data centers, it would have some pros and some cons.
 
@@ -285,9 +286,27 @@ Imagine collusion between data centers. They may be able to destroy individual b
 
 Imagine hacks to data centers. This could unleash a vast number of malicious nodes which could cause mass deranking and huge computational load managing the resulting churn.
 
-Honestly, I find it hard to imagine the effect of centralization, but there's no doubt in my mind it will happen if safe has any degree of success.
+The network has a technique (based on the sigmoid curve) to minimize centralization. This technique is unseen in blockchains. The algorithm results in diminishing returns to farmers that supply significantly above or below the average of other vaults, which creates strong incentives to maintain a decentralization of resources on the network (especially in the xor space). Minimizing centralization of the xor space is essential to maintaining the security of the network. This is discussed on the MaidSafe blog post about [keeping safecoin decentralised](https://blog.maidsafe.net/2015/02/06/keeping-safecoin-decentralised/).
 
-Maybe your imagination can shed some additional light. If you can think of an interesting failure mode, please share it in the discussion using the link at the bottom of all this.
+There are different forms of centralization that may happen in decentralized networks, each with their own possible motivators, severity and impact.
+
+* Economic centralization of safecoin rewards, similar to the primary cause of bitcoin mining centralization
+* XOR space centralization, which poses a risk to data integrity
+* Governance centralization, ie controlling resources that determine the network rules
+* Organizational centralization, similar to bitcoin core vs competing implementations
+
+The ability to form these different kinds of centralization depend on several factors
+
+* the _intended_ behavior of participants due to incentives put in place by the rules of the network
+* the _actual_ (possibly irrational) behavior of participants compared to the rational behavior determined by the incentive structure
+* divergence between specialized and consumer 'resources', ie bandwidth, storage, computation etc and how this affects behavior
+* organizational and governance decisions, which depend on feedback of many types
+
+The safe network has balanced these considerations differently to blockchains (both proof-of-work and proof-of-stake), mainly due to the underlying structure of the network.
+
+It's worth reading the discussion on the safe network forum titled '[How is Farming Centralization Disincentivized](https://forum.safenetwork.io/t/how-is-farming-centralization-disincentivized/6639)' to further understand decentralization on the safe network.
+
+Maybe your imagination can shed some additional light. If you can think of an interesting mode of centralization, please share it in the discussion using the link at the bottom of all this.
 
 [Back to Table Of Contents](#mining-centralization_toc)
 
