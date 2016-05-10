@@ -1,0 +1,125 @@
+---
+layout: post
+title:  "Safe Network implementation explained in plain language"
+date:   2016-05-10 00:00:00 +0000
+updated: 2016-05-10 00:00:00 +0000
+categories: bitcoin
+---
+This post explains the answers to some common questions about the safe network, with references back to the source code. Even if you can't 'read the source', you should be able to follow the explanations since they're in plain language.
+
+If these explanations are too technical it may be best to ask for clarification for your particular question on the [safe network forum](https://forum.safenetwork.io/).
+
+These questions are particularly about the *operation* of the safe network, as implemented by the code. This may not necessarily match the designed or intended operation. However, as we are about to find out, design and implementation are extremely closely matched (as expected!).
+
+## Table of contents
+
+### Vaults
+
+<ul>
+<li><a id="new-vault-peer-discovery_toc" href="#new-vault-peer-discovery" rel="nofollow">How does a new vault discover their initial peers?</a></li>
+<li><a id="how-is-close-group-consensus-reached_toc" href="#how-is-close-group-consensus-reached" rel="nofollow">How is close group consensus reached?</a></li>
+<li><a id="how-are-vaults-named-by-the-network_toc" href="#how-are-vaults-named-by-the-network" rel="nofollow">How are vaults named by the network?</a></li>
+<li><a id="what-happens-when-a-vault-comes-online_toc" href="#what-happens-when-a-vault-comes-online" rel="nofollow">What happens when a vault comes online?</a></li>
+<li><a id="what-happens-when-a-vault-goes-offline_toc" href="#what-happens-when-a-vault-goes-offline" rel="nofollow">What happens when a vault goes offline?</a></li>
+</ul>
+
+### Client Data
+
+<ul>
+<li><a id="data-transition-to-network_toc" href="#data-transition-to-network" rel="nofollow">How does data transition from a file on my computer to being stored on vaults?</a></li>
+<li><a id="data-fetched-from-network_toc" href="#data-fetched-from-network" rel="nofollow">How is data fetched from the network?</a></li>
+<li><a id="difference-between-private-and-public-data_toc" href="#difference-between-private-and-public-data" rel="nofollow">What is the difference between private and public data?</a></li>
+<li><a id="how-is-data-deleted-from-the-network_toc" href="#how-is-data-deleted-from-the-network" rel="nofollow">How is data deleted from the network?</a></li>
+</ul>
+
+### Farming
+
+<ul>
+<li><a id="proof-of-resource-algorithm_toc" href="#proof-of-resource-algorithm" rel="nofollow">How does proof of resource algorithm work?</a></li>
+<li><a id="vault-ranking-algorithm_toc" href="#vault-ranking-algorithm" rel="nofollow">How does the vault ranking algorithm work?</a></li>
+<li><a id="farming-speed-algorithm_toc" href="#farming-speed-algorithm" rel="nofollow">How is farming speed for each vault set by the network?</a></li>
+<li><a id="proof-of-resource-conversion-to-safecoin_toc" href="#proof-of-resource-conversion-to-safecoin" rel="nofollow">How is proof of resource converted into safecoin?</a></li>
+</ul>
+
+### Safecoin
+
+<ul>
+<li><a id="spending-safecoin_toc" href="#spending-safecoin" rel="nofollow">How does spending safecoin (ie changing structured data) work?</a></li>
+<li><a id="safecoin-management_toc" href="#safecoin-management" rel="nofollow">How is safecoin managed and how do wallets work?</a></li>
+</ul>
+
+### Apps
+
+<ul>
+<li><a id="how-is-general-structured-data-created_toc" href="#how-is-general-structured-data-created" rel="nofollow">How is general structured data created?</a></li>
+<li><a id="how-is-structured-data-updated_toc" href="#how-is-structured-data-updated" rel="nofollow">How is structured data updated?</a></li>
+</ul>
+
+### How does a new vault discover their initial peers? {#new-vault-peer-discovery}
+
+[Back to Table of contents](#new-vault-peer-discovery_toc)
+
+### How is close group consensus reached?
+
+[Back to Table of contents](#how-is-close-group-consensus-reached_toc)
+
+### How are vaults named by the network?
+
+[Back to Table of contents](#how-are-vaults-named-by-the-network_toc)
+
+### What happens when a vault comes online?
+
+[Back to Table of contents](#what-happens-when-a-vault-comes-online_toc)
+
+### What happens when a vault goes offline?
+
+[Back to Table of contents](#what-happens-when-a-vault-goes-offline_toc)
+
+### How does data transition from a file on my computer to being stored on vaults? {#data-transition-to-network}
+
+[Back to Table of contents](#data-transition-to-network_toc)
+
+### How is data fetched from the network? {#data-fetched-from-network}
+
+[Back to Table of contents](#data-fetched-from-network_toc)
+
+### What is the difference between private and public data? {#difference-between-private-and-public-data}
+
+[Back to Table of contents](#difference-between-private-and-public-data_toc)
+
+### How is data deleted from the network?
+
+[Back to Table of contents](#how-is-data-deleted-from-the-network_toc)
+
+### How does proof of resource algorithm work? {#proof-of-resource-algorithm}
+
+[Back to Table of contents](#proof-of-resource-algorithm_toc)
+
+### How does the vault ranking algorithm work? {#vault-ranking-algorithm}
+
+[Back to Table of contents](#vault-ranking-algorithm_toc)
+
+### How is farming speed for each vault set by the network? {#farming-speed-algorithm}
+
+[Back to Table of contents](#farming-speed-algorithm_toc)
+
+### How is proof of resource converted into safecoin? {#proof-of-resource-conversion-to-safecoin}
+
+[Back to Table of contents](#proof-of-resource-conversion-to-safecoin_toc)
+
+### How does spending safecoin (ie changing structured data) work? {#spending-safecoin}
+
+[Back to Table of contents](#spending-safecoin_toc)
+
+### How is safecoin managed and how do wallets work? {#safecoin-management}
+
+[Back to Table of contents](#safecoin-management_toc)
+
+### How is general structured data created?
+
+[Back to Table of contents](#how-is-general-structured-data-created_toc)
+
+### How is structured data updated?
+
+[Back to Table of contents](#how-is-structured-data-updated_toc)
+
