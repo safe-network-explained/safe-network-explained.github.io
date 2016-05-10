@@ -30,6 +30,7 @@ These questions are particularly about the *operation* of the safe network, as i
 <li><a id="data-fetched-from-network_toc" href="#data-fetched-from-network" rel="nofollow">How is data fetched from the network?</a></li>
 <li><a id="difference-between-private-and-public-data_toc" href="#difference-between-private-and-public-data" rel="nofollow">What is the difference between private and public data?</a></li>
 <li><a id="how-is-data-deleted-from-the-network_toc" href="#how-is-data-deleted-from-the-network" rel="nofollow">How is data deleted from the network?</a></li>
+<li><a id="how-many-redundant-copies-are-stored_toc" href="#how-many-redundant-copies-are-stored" rel="nofollow">How many redundant copies are stored?</a></li>
 </ul>
 
 ### Farming
@@ -122,6 +123,10 @@ The third point is what makes it so difficult for an attacker to gain a foothold
 ### How is data deleted from the network?
 
 [Back to Table of contents](#how-is-data-deleted-from-the-network_toc)
+
+### How many redundant copies are stored?
+
+[Back to Table of contents](#how-many-redundant-copies-are-stored_toc)
 
 ### How does proof of resource algorithm work? {#proof-of-resource-algorithm}
 
