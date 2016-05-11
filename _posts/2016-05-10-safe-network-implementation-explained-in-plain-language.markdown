@@ -58,6 +58,26 @@ These questions are particularly about the *operation* of the safe network, as i
 
 ### How does a new vault discover their initial peers? {#new-vault-peer-discovery}
 
+New vaults must discover peers in the network. If the vault initially connects to malicious peers, they would no longer be participating in 'the' safe network. Understanding peer discovery involves quite a deep dive from the vault layer down through the routing layer and ultimately ending up at the crust layer.
+
+When a vault is created one of the first things it does is [create a routing node](https://github.com/maidsafe/safe_vault/blob/85fb34dbca35f64c85bbef01f76bab0fc4dcd797/src/vault.rs#L58). The full implementation of 'routing node' can be found in the routing repository, specifically the file [node.rs](https://github.com/maidsafe/routing/blob/a8ee5ce4ba6356830ce2f38675773fcedc3da13b/src/node.rs).
+
+The functionality of routing nodes that's important for peer discovery is sending and receiving actions. The 'actions' functionality is [contained by the action_sender object](https://github.com/maidsafe/routing/blob/a8ee5ce4ba6356830ce2f38675773fcedc3da13b/src/node.rs#L69), which is an instance of 'routing core'. Routing core is described by [this comment](https://github.com/maidsafe/routing/blob/a8ee5ce4ba6356830ce2f38675773fcedc3da13b/src/core.rs#L146) as an 'interface for clients and nodes that handles routing and connecting to the network'. Let's confirm how this is implemented in routing core and how it initially discovers peers of the network.
+
+Part of the creation of a routing core object involves [creating a new crust service](https://github.com/maidsafe/routing/blob/a8ee5ce4ba6356830ce2f38675773fcedc3da13b/src/core.rs#L269). Crust Service is the point at which the connection to the network is initiated.
+
+Initializing a new crust service creates a variable [bootstrap_contacts](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/service.rs#L180), which is initiated by the return value of the function [get_known_contacts](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap.rs#L138). This function reads first [from the bootstrap_cache](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap.rs#L150), then [from the hard_coded_contacts](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap.rs#L153) in the configuration. Using 'extend' means that priority is given to the bootstrap_cache, and hard_coded_contacts is only used as a fallback. This is reiterated by [the comment not to use HashSet](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap.rs#L161) because 'we want to preserve the order in which we collect the contacts'.
+
+Interestingly, the maximum contacts for initializing connection to the network is defined by the constant value [MAX_CONTACTS_EXPECTED](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap.rs#L44), which is 1500.
+
+bootstrap_cache is [currently disabled](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap_handler.rs#L26), which makes sense while the network is under testing where previous connections are no longer relevant in new test networks. The main point of interest is that the bootstrap cache is [stored in a file .bootstrap.cache](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap_handler.rs#L109). Keeping this file secure is important!
+
+bootstrap_cache is automatically updated throughout the normal running of the node. The [bootstrap cache is updated](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/service.rs#L387) after a successful connection to a peer. This calls the method [insert_contacts](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap_handler.rs#L58), which ultimately results in [the newest bootstrap cache being written to the .bootstrap.cache file](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/bootstrap_handler.rs#L103).
+
+The final part to understanding peer discovery is hard_coded_contacts. The config file is [read from the file .crust.config](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/src/config_handler.rs#L80), which obviously must be initially sourced from a secure verified source, and also kept secure once obtained. The structure of the config file, in particular the values for hard_coded_contacts, can be seen in the [sample.config file of the crust installer](https://github.com/maidsafe/crust/blob/d73e34ca806f13dd15a7bcad19d6feb653536f09/installer/sample.config).
+
+In summary, bootstrapping happens from previously known clients stored in the bootstrap_cache, falling back to hard_coded_contacts in the supplied configuration file.
+
 [Back to Table of contents](#new-vault-peer-discovery_toc)
 
 ### How is close group consensus reached?
