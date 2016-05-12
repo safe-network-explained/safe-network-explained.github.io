@@ -118,6 +118,10 @@ The vault name is the only variable in calculating distance to other vaults to f
 
 The third point is what makes it so difficult for an attacker to gain a foothold. It's extremely difficult to predict the final name the network will issue, which ultimately means it's extremely difficult to form a group of close nodes on the network.
 
+There's an interesting edge case to consider. How does the very first vault join the network? It can't get a name from the network since there's not two other vaults to complete step three above.
+
+This edge case is handled in routing core. In this case, [the original name the vault gave itself is used](https://github.com/maidsafe/routing/blob/a8ee5ce4ba6356830ce2f38675773fcedc3da13b/src/core.rs#L551).
+
 [Back to Table of contents](#how-are-vaults-named-by-the-network_toc)
 
 ### What happens when a vault comes online?
