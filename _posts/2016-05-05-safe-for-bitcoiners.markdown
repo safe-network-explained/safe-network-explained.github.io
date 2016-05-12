@@ -911,7 +911,7 @@ Another speculative section, but let's look at the possible reasons safe may ris
 
 The fundamental difference of not using a blockchain may lead people to prefer the safe network if it can prove itself more efficient for users. It may be that users understand there's basically no difference between 'data' on the safe network and 'money' on the bitcoin network, and they may decide to use the more efficient system.
 
-Safe has flown under the radar despite the impressive technical accomplishments, and will probably continue to do so until the network is live and can prove how well it achieves the goals (or not). In contract, popular perception of bitcoin is being hijacked by the notion of 'the blockchain, not bitcoin', which may preface another interesting dynamic in the reception of the safe network once it gains more attention.
+Safe has flown under the radar despite the impressive technical accomplishments, and will probably continue to do so until the network is live and can prove how well it achieves the goals (or not). In contrast, popular perception of bitcoin is being hijacked by the notion of 'the blockchain, not bitcoin', which may preface another interesting dynamic in the reception of the safe network once it gains more attention.
 
 I personally think the transaction mechanism of safecoin is superior to bitcoin, and think it will eventually displace bitcoin for transfers of wealth. Whether safecoin can capture the storage of wealth component of bitcoin is totally uncertain. The monetary policy behaves similarly to bitcoin, so there is some chance it may be used as a general store of value.
 
