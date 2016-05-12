@@ -11,6 +11,8 @@ If these explanations are too technical it may be best to ask for clarification 
 
 These questions are particularly about the *operation* of the safe network, as implemented by the code. This may not necessarily match the designed or intended operation. However, as we are about to find out, design and implementation are extremely closely matched (as expected!).
 
+A small disclaimer: this is not official documentation, it's managed by the community.
+
 ## Table of contents
 
 ### Vaults
