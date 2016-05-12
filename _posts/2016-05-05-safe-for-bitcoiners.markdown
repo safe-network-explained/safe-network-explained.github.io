@@ -913,7 +913,7 @@ The fundamental difference of not using a blockchain may lead people to prefer t
 
 Safe has flown under the radar despite the impressive technical accomplishments, and will probably continue to do so until the network is live and can prove how well it achieves the goals (or not). In contrast, popular perception of bitcoin is being hijacked by the notion of 'the blockchain, not bitcoin', which may preface another interesting dynamic in the reception of the safe network once it gains more attention.
 
-I personally think the transaction mechanism of safecoin is superior to bitcoin, and think it will eventually displace bitcoin for transfers of wealth. Whether safecoin can capture the storage of wealth component of bitcoin is totally uncertain. The monetary policy behaves similarly to bitcoin, so there is some chance it may be used as a general store of value.
+I personally think the transaction mechanism of safecoin is superior to bitcoin, and think it will eventually displace bitcoin for _transfers_ of wealth. Whether safecoin can capture the _storage_ of wealth component of bitcoin is totally uncertain. The monetary policy behaves similarly to bitcoin, so there is some chance it may be used as a general store of value.
 
 Uninformed hype seems par for the course when it comes to cryptocurrency. It will be interesting to see how safe navigates those waters and how the learning curve unfolds. It took bitcoin a while to gain traction, partially because of the complexity. Safe certainly has similar issues of complexity and education to overcome.
 
