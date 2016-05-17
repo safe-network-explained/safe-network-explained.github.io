@@ -162,6 +162,12 @@ Client is specified in [core/client](https://github.com/maidsafe/safe_core/tree/
 
 Once the data passes from the client to routing, it must be verified and stored.
 
+The client finds an 'authority' from the network to be the entry point for the storage process. This authority is where the client must send the data to store it on the safe network. The authority is [known as a ClientManager](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/client/mod.rs#L337). The way [the ClientManager is chosen](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/client/mod.rs#L197) depends on the session for the client.
+
+The data finally reaches the network via the method [send_put_request](https://github.com/maidsafe/routing/blob/72bc19b318f2f60bb07a1a20db8bf50932a29a37/src/client.rs#L124) of the routing object. This calls the generic [send_action](https://github.com/maidsafe/routing/blob/72bc19b318f2f60bb07a1a20db8bf50932a29a37/src/client.rs#L129) with the message to put data on the network.
+
+The send_action functionality is executed by an [action_sender](https://github.com/maidsafe/routing/blob/72bc19b318f2f60bb07a1a20db8bf50932a29a37/src/client.rs#L157) object, in this case a [routing core object](https://github.com/maidsafe/routing/blob/72bc19b318f2f60bb07a1a20db8bf50932a29a37/src/client.rs#L73). When a routing core object [receives a put message](https://github.com/maidsafe/routing/blob/72bc19b318f2f60bb07a1a20db8bf50932a29a37/src/core.rs#L1121) from the CientManager, [it simply relays that event](https://github.com/maidsafe/routing/blob/72bc19b318f2f60bb07a1a20db8bf50932a29a37/src/core.rs#L1126) using the [send](https://github.com/maidsafe/routing/blob/72bc19b318f2f60bb07a1a20db8bf50932a29a37/src/core.rs#L2393) method. The destination for the next hop on the network away from the ClientManager is determined by calling [to_destination](https://github.com/maidsafe/routing/blob/72bc19b318f2f60bb07a1a20db8bf50932a29a37/src/core.rs#L2421) for the message. Since this is a ClientManager node, the result of calling to_destination is the [group](https://github.com/maidsafe/routing/blob/5747c084533a40e8dbbb9264237a02a10d132e4a/src/authority.rs#L83) for this node.
+
 [Back to Table of contents](#data-transition-to-network_toc)
 
 ### How is data fetched from the network? {#data-fetched-from-network}
