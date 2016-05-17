@@ -136,6 +136,32 @@ This edge case is handled in routing core. In this case, [the original name the 
 
 ### How does data transition from a file on my computer to being stored on vaults? {#data-transition-to-network}
 
+This explains the process of self-encryption and outlines the layers of the network that facilitate data storage.
+
+It should be pointed out that this all happens behind the scenes, and the api exposed for use by applications is extremely simple.
+
+Data (aka file content) is managed by the client using [SelfEncryptor](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L361) objects. It looks after the chunks of data, the datamap, the filesize.
+
+The SelfEncryptor methods of [read](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L439), [write](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L427) and [close](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L452) are designed to "loosely mimic a filesystem interface for easy connection to FUSE like programs as well as fine grained access to system level libraries for developers." - ie regular files and SelfEncryptor objects can be used the same way by developers; 'save a regular file to a hard drive' works the same as 'save a SelfEncryptor to the safe network'. App developers don't need to learn new interfaces, they just continue using normal file operations.
+
+When a SelfEncryptor is created, it [uses a sequencer](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L391) to split the content into [1MB](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L149) chunks. These chunks are encrypted before being sent to the network.
+
+The close method of SelfEncryptor is where the heavy lifting happens. "Content temporarily held in self_encryptor will only get flushed into storage when this function gets called." - ie network activity for writing the file only happens when the close method is called.
+
+Storage is specified as a simple key value store with only [get](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L353) and [put](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L355) methods required to be implemented. The exact implementation of this storage object will be discussed soon, and may for now be conceptualized as simply 'the safe network' like you may conceptualize 'the internet'. This is a very powerful yet simple abstraction indeed!
+
+Chunks are [encrypted](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L522) when data is written to storage (ie calling the close method of the SelfEncryptor). Chunks are [decrypted](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L643) when the read method is called.
+
+The actual [encryption](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/encryption.rs#L28) and [decryption](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/encryption.rs#L32) of chunks is performed by secretbox, which ultimately depends on the libsodium crypto library. The secretbox binding to libsodium is in [the sodiumoxide fork](https://github.com/maidsafe/sodiumoxide/blob/a9646ce47ae424f8085358e9f85631ec9eba05d7/src/crypto/secretbox/xsalsa20poly1305.rs#L59) maintained by MaidSafe. The encryption method is [crypto_secretbox_xsalsa20poly1305](https://github.com/maidsafe/sodiumoxide/blob/a9646ce47ae424f8085358e9f85631ec9eba05d7/src/crypto/secretbox/xsalsa20poly1305.rs#L1), "a particular combination of Salsa20 and Poly1305 specified in Cryptography in NaCl".
+
+So far we've covered how data is prepared on the client-side befor putting it on the safe network. What happens to this data after it's prepared?
+
+The mechanism for storing data is up to the client, but we can use the example from the [nfs implementation in safe_core](https://github.com/maidsafe/safe_core/tree/69f646db0b7cd905d54579df4125f1b9ae924661/src/nfs), which implements a [reader](https://github.com/maidsafe/safe_core/blob/69f646db0b7cd905d54579df4125f1b9ae924661/src/nfs/helper/reader.rs) and [writer](https://github.com/maidsafe/safe_core/blob/69f646db0b7cd905d54579df4125f1b9ae924661/src/nfs/helper/writer.rs) (both of which use the SelfEncryptor). These methods tap into the first layer of the safe network, specified in [core/self_encryption_storage.rs](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/self_encryption_storage.rs). Both the [get](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/self_encryption_storage.rs#L46) and the [put](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/self_encryption_storage.rs#L59) methods use the 'client' object to execute these actions.
+
+Client is specified in [core/client](https://github.com/maidsafe/safe_core/tree/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/client). Client makes heavy use of routing. Routing is managed by the client using a [routing object](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/client/mod.rs#L78). This object manages connections to the safe network. The get action from the client [passes to get](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/client/mod.rs#L328) in routing, and likewise the put action from the client [passes to put](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/client/mod.rs#L344) in routing. The client also [passes on the method for post](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/client/mod.rs#L360) and [the method for delete](https://github.com/maidsafe/safe_core/blob/bc9994b5fb95fff610ce0de3afac6b63bdcace02/src/core/client/mod.rs#L376), even though we (obviously) don't see these as part of SelfEncryptor.
+
+Once the data passes from the client to routing, it must be verified and stored.
+
 [Back to Table of contents](#data-transition-to-network_toc)
 
 ### How is data fetched from the network? {#data-fetched-from-network}
