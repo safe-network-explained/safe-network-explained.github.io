@@ -140,7 +140,7 @@ This explains the process of self-encryption and outlines the layers of the netw
 
 It should be pointed out that this all happens behind the scenes, and the api exposed for use by applications is extremely simple.
 
-Before this explanation kicks off, it's worth reading the plain language description of [routing](http://maidsafe.net/routing/master/routing/index.html) on the maidsafe site, which covers a lot of the concepts used in this explanation.
+Before this explanation kicks off, it's worth reading the plain language description of [routing](http://maidsafe.net/routing/master/routing/index.html) on the maidsafe site, which covers a lot of the concepts used in this explanation. There's also an [explanation of the put flow](https://github.com/maidsafe/safe_vault/blob/87c64d6c74a403629b48d34bee9508706ca083b9/docs/put_flow.md) in the safe vault docs.
 
 Data (aka file content) is managed by the client using [SelfEncryptor](https://github.com/maidsafe/self_encryption/blob/1d0b1e268bce5b1300b23509a222a0b0dce26852/src/lib.rs#L361) objects. It looks after the chunks of data, the datamap, the filesize.
 
