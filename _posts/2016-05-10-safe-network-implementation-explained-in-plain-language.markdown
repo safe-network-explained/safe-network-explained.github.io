@@ -202,25 +202,61 @@ Now the full picture of data flow has been covered. Client &rarr; ClientManager 
 
 ### How does proof of resource algorithm work? {#proof-of-resource-algorithm}
 
+Proof of resource is the algorithm that determines whether a vault should be rewarded with safecoin or not.
+
 Proof of resource has not yet been implemented in code. Read more about the progress of this feature:
 
 * [Farm Attempt RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0004-farm-attempt/0004-farm-attempt.md) and [discussion](https://github.com/maidsafe/rfcs/issues/25)
 * [Balance Network Resources RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0005-balance-network-resources/0005-balance-network-resources.md) and [discussion](https://github.com/maidsafe/rfcs/issues/26)
 * [Safecoin Implementation RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0012-safecoin-implementation/0012-safecoin-implementation.md) and [discussion](https://github.com/maidsafe/rfcs/issues/61)
-* [wiki page for Proof of Resource](https://safenetwork.wiki/en/Proof_of_resource)
+* [Safe Vault Documentation](https://github.com/maidsafe/safe_vault/tree/87c64d6c74a403629b48d34bee9508706ca083b9/docs)
+* [Wiki page for Proof of Resource](https://safenetwork.wiki/en/Proof_of_resource)
 * [Safecoin Roadmap](http://maidsafe.net/roadmap#safecoin)
 
 [Back to Table of contents](#proof-of-resource-algorithm_toc)
 
 ### How does the vault ranking algorithm work? {#vault-ranking-algorithm}
 
+The vault ranking algorithm is used to manage network authority and thus has implications for the security of data on the network.
+
+Vault ranking has not yet been implemented in code. Read more about the progress of this feature:
+
+* [Farm Attempt RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0004-farm-attempt/0004-farm-attempt.md) and [discussion](https://github.com/maidsafe/rfcs/issues/25)
+* [Balance Network Resources RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0005-balance-network-resources/0005-balance-network-resources.md) and [discussion](https://github.com/maidsafe/rfcs/issues/26)
+* [Safecoin Implementation RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0012-safecoin-implementation/0012-safecoin-implementation.md) and [discussion](https://github.com/maidsafe/rfcs/issues/61)
+* [Safe Vault Documentation](https://github.com/maidsafe/safe_vault/tree/87c64d6c74a403629b48d34bee9508706ca083b9/docs)
+* [Wiki page for Measurement And Reward](https://safenetwork.wiki/en/Measurement_and_reward)
+* [Safecoin Roadmap](http://maidsafe.net/roadmap#safecoin)
+
 [Back to Table of contents](#vault-ranking-algorithm_toc)
 
 ### How is farming speed for each vault set by the network? {#farming-speed-algorithm}
 
+Farming speed is the algorithm which determines how much reward a vault earns through proof of work, and incentivizes a stable network structure.
+
+Farming speed has not yet been implemented in code. Read more about the progress of this feature:
+
+* [Farm Attempt RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0004-farm-attempt/0004-farm-attempt.md) and [discussion](https://github.com/maidsafe/rfcs/issues/25)
+* [Balance Network Resources RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0005-balance-network-resources/0005-balance-network-resources.md) and [discussion](https://github.com/maidsafe/rfcs/issues/26)
+* [Safecoin Implementation RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0012-safecoin-implementation/0012-safecoin-implementation.md) and [discussion](https://github.com/maidsafe/rfcs/issues/61)
+* [Safe Vault Documentation](https://github.com/maidsafe/safe_vault/tree/87c64d6c74a403629b48d34bee9508706ca083b9/docs)
+* [Wiki page for Farming Rates](https://safenetwork.wiki/en/Safecoins_(How_it_works)#Farming_rates)
+* [Safecoin Roadmap](http://maidsafe.net/roadmap#safecoin)
+
 [Back to Table of contents](#farming-speed-algorithm_toc)
 
 ### How is proof of resource converted into safecoin? {#proof-of-resource-conversion-to-safecoin}
+
+Proof of resource is the first step toward earning safecoin from the network. The network must automatically decide when and how to allocate safecoin to vaults in exchange for proof of resource.
+
+Proof of resource and safecoin has not yet been implemented in code. Read more about the progress of this feature:
+
+* [Farm Attempt RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0004-farm-attempt/0004-farm-attempt.md) and [discussion](https://github.com/maidsafe/rfcs/issues/25)
+* [Balance Network Resources RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0005-balance-network-resources/0005-balance-network-resources.md) and [discussion](https://github.com/maidsafe/rfcs/issues/26)
+* [Safecoin Implementation RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0012-safecoin-implementation/0012-safecoin-implementation.md) and [discussion](https://github.com/maidsafe/rfcs/issues/61)
+* [Safe Vault Documentation](https://github.com/maidsafe/safe_vault/tree/87c64d6c74a403629b48d34bee9508706ca083b9/docs)
+* [Wiki page for How Are Safecoins Distributed](https://safenetwork.wiki/en/FAQ#How_are_safecoins_distributed.3F)
+* [Safecoin Roadmap](http://maidsafe.net/roadmap#safecoin)
 
 [Back to Table of contents](#proof-of-resource-conversion-to-safecoin_toc)
 
