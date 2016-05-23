@@ -202,6 +202,14 @@ Now the full picture of data flow has been covered. Client &rarr; ClientManager 
 
 ### How does proof of resource algorithm work? {#proof-of-resource-algorithm}
 
+Proof of resource has not yet been implemented in code. Read more about the progress of this feature:
+
+* [Farm Attempt RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0004-farm-attempt/0004-farm-attempt.md) and [discussion](https://github.com/maidsafe/rfcs/issues/25)
+* [Balance Network Resources RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0005-balance-network-resources/0005-balance-network-resources.md) and [discussion](https://github.com/maidsafe/rfcs/issues/26)
+* [Safecoin Implementation RFC](https://github.com/maidsafe/rfcs/blob/e5568a4464353255ea6f5baebd55d275a7c8b210/text/0012-safecoin-implementation/0012-safecoin-implementation.md) and [discussion](https://github.com/maidsafe/rfcs/issues/61)
+* [wiki page for Proof of Resource](https://safenetwork.wiki/en/Proof_of_resource)
+* [Safecoin Roadmap](http://maidsafe.net/roadmap#safecoin)
+
 [Back to Table of contents](#proof-of-resource-algorithm_toc)
 
 ### How does the vault ranking algorithm work? {#vault-ranking-algorithm}
