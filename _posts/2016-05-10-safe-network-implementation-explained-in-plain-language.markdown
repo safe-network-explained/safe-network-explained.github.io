@@ -128,6 +128,30 @@ This edge case is handled in routing core. In this case, [the original name the 
 
 ### What happens when a vault comes online?
 
+Churn is the movement of data on the safe network as nodes join, leave, or relocate. It's an essential feature for the reliability and security of data on the safe network. The best place to begin to gain an understanding of churn is the events that trigger it. In this case, churn is initiated by new vaults joining the network.
+
+For some background to this, read the section about [how new vaults discover peers](#new-vault-peer-discovery).
+
+There are two perspectives to consider: the perspective of the new vault being allocated peers and data, and the perspective of existing vaults responding to the presence of the new vault.
+
+What happens to the new vault?
+
+Firstly, they discover peers, as covered in the section above. The new vault will begin receiving data from the network as existing vaults respond to the presence of the new vault and begin reallocating data. So it's surprisingly simple for a new vault; they just join the network and let existing vaults perform the reshuffle.
+
+How do existing vaults handle new vaults joining the network?
+
+Vaults respond to events in the [process_event](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/vault.rs#L114) method. The NodeAdded event calls the [on_node_added](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/vault.rs#L242) method. This then calls the specific implementation of handle_node_added for each persona.
+
+Let's look at how data managers implement handle_node_added.
+
+The data manager persona implements several actions in [handle_node_added](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/data_manager.rs#L553). The [first action](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/data_manager.rs#L566) is to "only retain data for which we're still in the close group". If data is closer to the new vault it needs to be allocated to the new vault and removed from this one. Data which fits this criteria is [added to a refresh list](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/data_manager.rs#L583). The [second action](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/data_manager.rs#L588) is to refresh data in the refresh list, ie initiate churn for that data.
+
+Let's look at how maid managers implement handle_node_added.
+
+From the [handle_node_added](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/maid_manager.rs#L182) of the maid_manager it's clear that the functionality is quite similar, except instead of handling churn of data it handles churn of accounts. The existing vault finds any accounts it is no longer responsible for, called [accounts_to_delete](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/maid_manager.rs#L187). The existing vault stops tracking these accounts and [requests they be refreshed](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/maid_manager.rs#L207), which will trigger the churn event allocating the account to the new vault which is closer than this one.
+
+Thanks to the messaging system, routing table and close group consensus mechanism of the safe network, the way churn is handled is quite simple to understand.
+
 [Back to Table of contents](#what-happens-when-a-vault-comes-online_toc)
 
 ### What happens when a vault goes offline?
