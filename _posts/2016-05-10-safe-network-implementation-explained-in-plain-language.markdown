@@ -156,6 +156,20 @@ Thanks to the messaging system, routing table and close group consensus mechanis
 
 ### What happens when a vault goes offline?
 
+Churn is the movement of data on the safe network as nodes join, leave, or relocate. It's an essential feature for the reliability and security of data on the safe network. The best place to begin to gain an understanding of churn is the events that trigger it. In this case, churn is initiated by new vaults joining the network.
+
+For some background to this, read the section about [how new vaults discover peers](#new-vault-peer-discovery) and the section about [what happens when a vault comes online](#what-happens-when-a-vault-comes-online) which discusses how churn is managed.
+
+With that background it's easy to understand how vaults going offline is handled, since it's almost exactly the same way as vaults coming online. Both these events trigger churn.
+
+At the highest level of an existing vault responding to a lost node, the [NodeLost](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/vault.rs#L128) event calls the [on_node_lost](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/vault.rs#L251) event, which is then calls handle_node_lost for each persona.
+
+Data Managers handle lost nodes by finding data affected by the lost node. The vault [checks the size of the close group](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/data_manager.rs#L627) for that data and if is less than it should be, it [refreshes that data](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/data_manager.rs#L637) to bring the consensus group to the size.
+
+Maid Managers handle lost nodes by [refreshing the account data](https://github.com/maidsafe/safe_vault/blob/5cf9f1837f2b435f61044676eafa324353ff9968/src/personas/maid_manager.rs#L213), which brings the consensus group back up to the required number.
+
+There's a subtle but important distinction to be made here regarding the use of the phrase 'vault goes offline'. The event is worded in the code more correctly as 'lost' rather than 'offline'. The 'lost' event may happen due to going offline, or because a vault is renamed. Both these events result in churn, and from the perspective of existing vaults are identical.
+
 [Back to Table of contents](#what-happens-when-a-vault-goes-offline_toc)
 
 ### How does data transition from a file on my computer to being stored on vaults? {#data-transition-to-network}
