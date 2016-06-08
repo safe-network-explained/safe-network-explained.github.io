@@ -363,7 +363,7 @@ What similar strange quirks of nomenclature can be found in the safe network?
 
 * maidsafe vs safe network vs safecoin vs maidsafecoin
 
-    * Maidsafe: seemingly a catch-all phrase. The proper use is to refer to the organization overseeing the development of the network. But it's often used as a name for the network itself, the coin for the network; this has become a very confusing term which has been used in many different ways. The most correct use of this term is to refer to the not-for-profit organization that oversees the development of the network, including design, source code, marketing etc. Maidsafe is an acronym for massive array of internet disks, secure access for everyone.
+    * Maidsafe: seemingly a catch-all phrase. The proper use is to refer to the organization overseeing the development of the network. But it's often used as a name for the network itself, the coin for the network; this has become a very confusing term which has been used in many different ways. The most correct use of this term is to refer to the for-profit organization that oversees the development of the network, including design, source code, marketing etc. The closely-related Maidsafe Foundation is the not-for-profit organization that [holds patents](http://cointelegraph.com/news/clearing-the-air-over-maidsafes-patent-request-an-interview-with-coo-nick-lambert) and fosters education and innovation. Maidsafe is an acronym for massive array of internet disks, secure access for everyone.
 
     * safe network: the network that manages and stores data. Analogous to Bitcoin with a capital B. The safe network is not currently live but is undergoing testing and continued development before launch.
 
