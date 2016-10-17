@@ -141,7 +141,7 @@ This highlights an interesting property of bitcoin - the 'true' state of the net
 
 How does the safe network compare in terms of truth and handling 'race' situations? If a client announces a change to part of the network and a different change simultaneously to another part of the network, how does this resolve?
 
-When data is to be changed on the safe network, 28 of 32 close group nodes must agree on the change. If the client simultaneously announces different data so 22 nodes in the group receive one version but 10 receive a different version, consensus will not be reached and the change will not be made.
+When data is to be changed on the safe network, a quorum (ie subset) of the close group nodes must agree to the change. If the client simultaneously announces different data so two thirds of the nodes in the group receive one version but a third receive a different version, consensus will not be reached and the change will not be made.
 
 It's actually a bit more subtle than that, depending on whether the data is mutable or immutable, a put or a post; but those details begins to blur the concept so it's best to research that yourself.
 
