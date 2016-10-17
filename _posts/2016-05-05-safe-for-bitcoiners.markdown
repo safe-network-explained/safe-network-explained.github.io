@@ -883,16 +883,6 @@ BIPs are amazing and I regularly refer to them. The same is true of safe RFCs, s
 
 [Back to Table Of Contents](#bips_toc)
 
-### Revolutionary concepts
-
-Everyone stores everything forever. How can that possibly work? Bitcoin showed it can.
-
-There's got to be an equally ludicrous objection about the safe network, but I haven't crystallized one yet.
-
-The point is, don't let your current understanding of what is impossible stop you from seeing the technical operation of the safe network. It will intrigue you if you take the time to learn about it, probably in the same way bitcoin made you feel when you first understood it. The process of learning may be frustrating and fragmented, but it's worth it. Heck, I wrote all this, can't be _that_ bad!
-
-[Back to Table Of Contents](#revolutionary-concepts_toc)
-
 ### Whitepaper
 
 The bitcoin whitepaper is a well respected document for it's concise yet fairly complete description of the bitcoin network.
