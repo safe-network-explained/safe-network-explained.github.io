@@ -162,7 +162,7 @@ A bitcoin transaction is represented as an _addition_ of data to the blockchain.
 
 A safecoin transaction is represented as a _modification_ to an existing piece of data, namely by changing the details for the current owner of the coin. The change to the data is performed by the network in an atomic operation, subject to approval by close group consensus. Once the close group consensus is agreed, the change is made and is final.
 
-The safe network does not have a concept of zero confirmations (or confirmations at all) and transactions are final once committed to the network, which happens as soon as 32 close group nodes have reached consensus on the change (typically less than a second).
+The safe network does not have a concept of zero confirmations (or confirmations at all) and transactions are final once committed to the network, which happens as soon as the close group nodes have reached consensus on the change (typically less than a second).
 
 To better understand how transactions are made on the safe network, a good place to start is the entire [unified structured data](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0000-Unified-structured-data/0000-Unified-structured-data.md) rfc.
 
