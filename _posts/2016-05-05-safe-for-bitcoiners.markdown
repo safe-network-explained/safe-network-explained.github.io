@@ -69,15 +69,15 @@ The safe network addresses the same problem as the blockchain, namely that of co
 
 With bitcoin and blockchains, every node of the network has a full copy of all data on the network. As new data is added to the network, every node keeps a copy of that data.
 
-Safe keeps only six copies of each piece of data on the network. Each piece of data is allocated a group of 32 nodes by the network to keep watch over the integrity of that piece of data. Changes to that data can only be made if there's consensus by 28 of the 32 nodes as to the true state of the data. Because only that relatively small group of nodes must agree on the true state of the data, safe is much more efficient than bitcoin.
+Safe keeps only a few copies of each piece of data on the network. Each piece of data is allocated a group of nodes (about 30) by the network to keep watch over the integrity of that piece of data. Changes to that data can only be made if there's consensus by a supermajority of the group (about 80%) as to the true state of the data. Because only that relatively small group of nodes must agree on the true state of the data, safe is much more efficient than bitcoin.
 
-There is some doubt about why 32, is this secure, why not more, why not less? Rather than jump to deriving this number by proof, take a moment to consider what is being achieved by the consensus rules of both bitcoin and safe: data should not be vulnerable to being lost, corrupted, or incorrectly modified. If those 32 nodes can be manipulated (hacked or bribed etc), the data they control would not be considered secure. This concern is addressed by the first part of the phrase, 'close' group consensus.
+There is some doubt about how large groups should be, is this secure, why not more, why not less? Rather than jump to deriving this number by proof, take a moment to consider what is being achieved by the consensus rules of both bitcoin and safe: data should not be vulnerable to being lost, corrupted, or incorrectly modified. If that group of nodes can be manipulated (hacked or bribed etc), the data they control would not be considered secure. This concern is addressed by the first part of the phrase, 'close' group consensus.
 
 Closeness is the algorithm which determines how the group governing each piece of data is formed. Members of this group are chosen by the network in a way that is very difficult to manipulate (the difficulty of doing this, like bitcoin, changes depending on the size of the network, becoming harder as the network grows). Rather than go into the details of the close group consesus algorithm here, I would instead recommend reading about xor distance as used by the safe network and follow the information trail from there.
 
 To directly compare the language for the security of the bitcoin vs safe network, bitcoin is secured by 'proof of work', safe is secured by 'close group consensus'.
 
-For more reading about consensus using close groups rather than a blockchain, it's worth reading [Consensus Systems](https://blog.maidsafe.net/tag/consensus-systems/) on the maidsafe blog.
+For more reading about consensus using close groups rather than a blockchain, it's worth reading [Consensus Systems](https://blog.maidsafe.net/tag/consensus-systems/) on the maidsafe blog. It's also worth reading about [Disjoint Groups](https://github.com/maidsafe/rfcs/blob/master/text/0037-disjoint-groups/0037-disjoint-groups.md).
 
 In the same way the blockchain was the key innovation that allowed the realization of bitcoin, close group consensus is the key innovation that allows safe to provide the same functionality but with vastly improved efficiency.
 
