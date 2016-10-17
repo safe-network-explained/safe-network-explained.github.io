@@ -491,7 +491,7 @@ Rather than labor the comparison, I think it's better to focus on the techniques
 
 Safe uses redundancy when storing data. Read about how it works in the [immutable data naming](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0013-immutable-data-naming/0013-immutable-data-naming.md) rfc
 
-Safe uses a quorum of 28 of 32 nodes to ensure data remains consistent and changes are valid. There's [an informative post](https://blog.maidsafe.net/2015/01/29/consensus-without-a-blockchain/) on the maidsafe blog about the consensus mechanism. The idea of close group consensus is so important to the operation of the safe network that it's worth reading about in detail.
+Safe uses a quorum of a supermajority of nodes in the close group to ensure data remains consistent and changes are valid. There's [an informative post](https://blog.maidsafe.net/2015/01/29/consensus-without-a-blockchain/) on the maidsafe blog about the consensus mechanism. The idea of close group consensus is so important to the operation of the safe network that it's worth reading about in detail.
 
 [Back to Table Of Contents](#forking_toc)
 
