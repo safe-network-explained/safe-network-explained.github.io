@@ -479,7 +479,7 @@ Can the safe network fork? How does the safe network remain a single homogeneous
 
 This terminology is one of the harder ones to compare across the bitcoin and safe networks.
 
-Let's start by frame 'forking' as 'breaking the network into two or more discreetly different parts'.
+Let's start by framing 'forking' as 'breaking the network into two or more discretely different parts'.
 
 In this case, we must consider, how would safe become two different networks?
 
