@@ -113,7 +113,7 @@ Bitcoin is often said to have solved the 'double spend problem', which is akin t
 
 Safe has a token similar to that of bitcoin, called safecoin. Where bitcoin _transaction_ data is _appended_ to the blockchain, safecoin _ownership_ data is _updated_ on the safe network. How does safe ensure that coins spent on the safe network are not susceptible to double spending, and how does this compare to bitcoin's implementation?
 
-Let's establish a common understanding of bitcoin and double-spends. When bitcoin is received, the confidence it will not be double-spent by the person that sent it to them depends on how many confirmations the transaction has. Double spend in bitcoin _is possible_, it's just very difficult. Replace-by-fee made the window for double spending much larger and simpler to execute, and double-spending in bitcoin should be thought of as very high or low probabilities of confidence, not by absolute certainty.
+Let's establish a common understanding of bitcoin and double-spends. When bitcoin is received, the confidence it will not be double-spent depends on how many confirmations the transaction has. Double spend in bitcoin _is possible_, it's just very difficult. Replace-by-fee made the window for double spending much larger and simpler to execute, and double-spending in bitcoin should be thought of as very high or low _probabilities of confidence_, not by absolute certainty.
 
 This is one of the biggest advantages safe has over bitcoin - transactions are extremely fast and once made, confidence is complete. How does this work? To understand, we must first look at how bitcoin vs safecoin is represented by the data of the network.
 
@@ -127,7 +127,7 @@ A safecoin is a special package of data (called structured data) which contains 
 
 Transferring safecoin is a single atomic data event on the safe network. Once completed, it stays that way until the new owner decides to change it. There is no way it can be reversed, unlike bitcoin which can have changes to the mempool or even orphaned blocks.
 
-Compare the cost of completing a transaction. In bitcoin, the cost of a transaction is the size of the transaction relative to the entire block, multiplied by the cost of the proof of work to generate the block. In safecoin, the cost is the resources required to obtain consensus for the piece of data (32 nodes must reach consensus then store the change) multiplied by the number of coins being spent. Safecoin transactions are extremely efficient compared to bitcoin transactions because close group consensus is much cheaper and faster than generating a proof of work.
+Compare the cost of completing a transaction. In bitcoin, the cost of a transaction is the size of the transaction relative to the entire block, multiplied by the cost of the proof of work to generate the block. In safecoin, the cost is the resources required to obtain consensus for the piece of data (a close group of nodes must reach consensus then store the change) multiplied by the number of coins being spent. Safecoin transactions are extremely efficient compared to bitcoin transactions because close group consensus is much cheaper and faster than generating a proof of work.
 
 [Back to Table Of Contents](#double-spend-prevention_toc)
 
