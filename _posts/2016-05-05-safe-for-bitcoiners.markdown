@@ -264,7 +264,7 @@ There may be. Since there are only 4.3B coins available, it could become very di
 
 I think speculation about the pitfalls of the safe network is important, but am unable to provide much insight on this myself. If you have ideas about it, please add a comment on the discussion at forum by clicking the link at the very bottom of all this. It's certainly an interesting topic, but one that's hard to provide concrete knowledge about.
 
-Vitalik Buterin from the ethereum project provided an interesting discussion about the [potential pitfalls](https://forum.safenetwork.io/t/vitalik-buterin-on-maidsafes-consensus-mechanism/3542) that close group consensus may face.
+Vitalik Buterin from the ethereum project provided an interesting discussion about the [potential pitfalls](https://safenetforum.org/t/vitalik-buterin-on-maidsafes-consensus-mechanism/3542) that close group consensus may face.
 
 [Back to Table Of Contents](#pooled-mining_toc)
 
@@ -304,7 +304,7 @@ The ability to form these different kinds of centralization depend on several fa
 
 The safe network has balanced these considerations differently to blockchains (both proof-of-work and proof-of-stake), mainly due to the underlying structure of the network.
 
-It's worth reading the discussion on the safe network forum titled '[How is Farming Centralization Disincentivized](https://forum.safenetwork.io/t/how-is-farming-centralization-disincentivized/6639)' to further understand decentralization on the safe network.
+It's worth reading the discussion on the safe network forum titled '[How is Farming Centralization Disincentivized](https://safenetforum.org/t/how-is-farming-centralization-disincentivized/6639)' to further understand decentralization on the safe network.
 
 Maybe your imagination can shed some additional light. If you can think of an interesting mode of centralization, please share it in the discussion using the link at the bottom of all this.
 
@@ -405,13 +405,13 @@ No alternative or competing implementation exist, however there is a desire in t
 
 There are libraries to access the safe network written in various languages
 
-[Go client library](https://github.com/cretz/go-safeclient/) and [discussion](https://forum.safenetwork.io/t/ann-safe-cli-go-library-and-integration-tests-alpha-release/7957)
+[Go client library](https://github.com/cretz/go-safeclient/) and [discussion](https://safenetforum.org/t/ann-safe-cli-go-library-and-integration-tests-alpha-release/7957)
 
-[Ruby client library](https://github.com/loureirorg/ruby-safenet) and [discussion](https://forum.safenetwork.io/t/ruby-safenet-create-safe-apps-in-ruby/8182)
+[Ruby client library](https://github.com/loureirorg/ruby-safenet) and [discussion](https://safenetforum.org/t/ruby-safenet-create-safe-apps-in-ruby/8182)
 
-[Javascript client library](https://github.com/cretz/safeclient.js) and [discussion](https://forum.safenetwork.io/t/ann-safeclient-js-client-library/8206)
+[Javascript client library](https://github.com/cretz/safeclient.js) and [discussion](https://safenetforum.org/t/ann-safeclient-js-client-library/8206)
 
-[Python example](https://forum.safenetwork.io/t/registering-with-safe-launcher-from-python/8175)
+[Python example](https://safenetforum.org/t/registering-with-safe-launcher-from-python/8175)
 
 Safe 'core' is written in rust.
 
@@ -521,7 +521,7 @@ Related to blocksize, the issue of scaling is a hot topic in the world of bitcoi
 
 How does the safe network scale, and what are the likely bottlenecks of the network?
 
-The most obvious one, which was a complaint of similar systems such as freenet, will be bandwidth and latency. If the network cannot achieve efficiency in delivering and storing data, it will not be popular. There are strict physical limits to the speed at which a global network can operate, light simply won't travel through fibre optic any faster. Safe will need to overcome that constraint, especially given the multi-hop non-geographic chained-request method in use (like TOR) which can drastically increase the latency of the network. There's [a good analysis and discussion of this bottleneck](https://forum.safenetwork.io/t/hardware-network-communications-speeds-lags-bottlenecks/6021) on the safe network forum.
+The most obvious one, which was a complaint of similar systems such as freenet, will be bandwidth and latency. If the network cannot achieve efficiency in delivering and storing data, it will not be popular. There are strict physical limits to the speed at which a global network can operate, light simply won't travel through fibre optic any faster. Safe will need to overcome that constraint, especially given the multi-hop non-geographic chained-request method in use (like TOR) which can drastically increase the latency of the network. There's [a good analysis and discussion of this bottleneck](https://safenetforum.org/t/hardware-network-communications-speeds-lags-bottlenecks/6021) on the safe network forum.
 
 One of the ways this is resolved is called opportunistic caching. The idea is that popular data is cached close to the source requesting it, so any future requests can be served much more rapidly. Caching is well known to be an extremely prickly subject, one that I'm not going to cover here; all I want is to bring awareness to this feature so if it's something you're interested in there's a stepping-off point to your search.
 
@@ -605,7 +605,7 @@ There's a proposal for how divisibility will be achieved, but no agreement.
 
 Rather than make things up I'll leave this section in a state of ambiguity, which also serves to reflect the state of this issue.
 
-Have a look at [safecoin management](https://github.com/maidsafe/rfcs/blob/master/text/0012-safecoin-implementation/0012-safecoin-implementation.md#safecoin-management) in the rfc, and at this [long conversation about divisibility](https://forum.safenetwork.io/t/safecoin-divisibility/4806) on the forum.
+Have a look at [safecoin management](https://github.com/maidsafe/rfcs/blob/master/text/0012-safecoin-implementation/0012-safecoin-implementation.md#safecoin-management) in the rfc, and at this [long conversation about divisibility](https://safenetforum.org/t/safecoin-divisibility/4806) on the forum.
 
 I feel this will be one of those issues similar to the bitcoin blocksize debate. It could easily get out of hand. It's obvious that 4.3B atomic units is nowhere near enough for a modern world which already has IPV4 problems (coincidentally also a 2^32 space).
 
@@ -855,13 +855,13 @@ What's the safe community like and what issues has it presented for the progress
 
 This is something you're best to judge for yourself.
 
-* [Forum](https://forum.safenetwork.io/) is the main place to commune.
+* [Forum](https://safenetforum.org/) is the main place to commune.
 * [Reddit for maidsafe](https://www.reddit.com/r/maidsafe) is the bigger reddit community.
 * [Reddit for safe network](https://www.reddit.com/r/safenetwork) is the smaller reddit community.
 
 I've found the community to be extremely welcoming and friendly, although there are of course a few bristly interactions and misunderstandings. The moderators and team of experts seem friendly and highly engaged. It's clearly still early days for the community, and it's generally a pretty nice place to be.
 
-A good example of how bitcoiners tend to engage with the safe community also doubles as [an example of how to become frustrated](https://forum.safenetwork.io/t/how-does-maidsafe-solve-double-spending/257) (fault probably lies with both communities here).
+A good example of how bitcoiners tend to engage with the safe community also doubles as [an example of how to become frustrated](https://safenetforum.org/t/how-does-maidsafe-solve-double-spending/257) (fault probably lies with both communities here).
 
 [Back to Table Of Contents](#the-bitcoin-community_toc)
 
@@ -875,7 +875,7 @@ At this stage the safe process is slightly more fragmented, but there is a compa
 
 The [RFC process](https://github.com/maidsafe/rfcs) is pretty solid and contains a fantastic wealth of information. Note that actual comments and discussion for each topic reside in the [issues](https://github.com/maidsafe/rfcs/issues) part of the rfcs repository.
 
-There's also weekly plain language updates from the development team on [the updates category](https://forum.safenetwork.io/c/development/updates) of the forum which are a useful source of current developments.
+There's also weekly plain language updates from the development team on [the updates category](https://safenetforum.org/c/development/updates) of the forum which are a useful source of current developments.
 
 BIPs are amazing and I regularly refer to them. The same is true of safe RFCs, so get stuck in and have a read. They'll be most useful once a mental map of the network has been established in your mind, but they do generally stand alone fairly well.
 
@@ -949,8 +949,8 @@ Here's some of the essential phrases and words for taking part in a technical co
 
 There's also some interesting comments from prominent figures in the bitcoin and blockchain community:
 
-* [Vitalik Buterin comments](https://forum.safenetwork.io/t/vitalik-buterin-on-maidsafes-consensus-mechanism/3542) on the consensus mechanism - a great read.
-* [Andreas Antonopolous](https://forum.safenetwork.io/t/andreas-antonopoulos-gives-thoughts-on-the-safe-network/8662) comments on his interpretation of the safe network.
+* [Vitalik Buterin comments](https://safenetforum.org/t/vitalik-buterin-on-maidsafes-consensus-mechanism/3542) on the consensus mechanism - a great read.
+* [Andreas Antonopolous](https://safenetforum.org/t/andreas-antonopoulos-gives-thoughts-on-the-safe-network/8662) comments on his interpretation of the safe network.
 
 If you know of any other comments that would help bridge the gap between bitcoin and safe, please let me know using the link at the bottom of all this.
 
@@ -964,9 +964,9 @@ To properly understand the safe network, the following resources are good places
 
 * [Source code](https://github.com/maidsafe)
 * [Wiki](https://safenetwork.wiki/en/Main_Page)
-* [Forum](https://forum.safenetwork.io/)
+* [Forum](https://safenetforum.org/)
 * [Book](http://systemdocs.maidsafe.net/content/en/)
 * [Website](http://maidsafe.net/)
 * [Blog](https://blog.maidsafe.net/)
 
-If you have a correction, question or comment, please let me know in [the discussion on the forum](https://forum.safenetwork.io/t/the-safe-network-explained-using-bitcoin-terminology/9054).
+If you have a correction, question or comment, please let me know in [the discussion on the forum](https://safenetforum.org/t/the-safe-network-explained-using-bitcoin-terminology/9054).
