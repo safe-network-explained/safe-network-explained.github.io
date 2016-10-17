@@ -577,6 +577,8 @@ Yes it can, but again, it's extremely hard. The comparable 'ideal' to bitcoin vo
 
 It's worth reading more about attacks to the safe network, since this is a complex topic and one that by my own confession isn't covered in adequate detail here. Check the [attacks on the safe network](https://safenetwork.wiki/en/FAQ#Attacks_on_the_SAFE_Network) section of the wiki for some additional info.
 
+It's also worth reading about [Node Ageing](https://github.com/maidsafe/rfcs/blob/master/text/0045-node-ageing/0045-node-ageing.md), which affects the difficulty of joining the network and exerting authority over data.
+
 [Back to Table Of Contents](#and-sybil-attacks_toc)
 
 ### Proof of burn
