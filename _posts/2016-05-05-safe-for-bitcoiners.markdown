@@ -2,7 +2,7 @@
 layout: post
 title:  "Safe Network explained using bitcoin terminology"
 date:   2016-05-05 00:00:00 +0000
-updated: 2016-05-10 00:00:00 +0000
+updated: 2016-10-17 00:00:00 +0000
 categories: bitcoin
 ---
 If you already know how bitcoin works, it makes sense to build on that knowledge when trying to understand SAFE rather than start from scratch.
