@@ -569,7 +569,7 @@ Can the network rules be attacked by sybil attacks?
 
 This would be possible but extremely difficult. Let's look at what it would take to change one of the rules. Imagine changing coin names from 32 bits to 33 bits, thus doubling the coin supply.
 
-The attacker would have to control enough of the network that 'old-style 32 bit coins' with 32 bit names were ruled to be invalid. This means an attacker needs to obtain consensus over every coin (28 of 32 nodes for every coin). They'd have to control at least 88% of the network, and have that 88% evenly distributed (even distribution is probably a reasonable assumption though, given how vault naming works). Controlling 88% of the network should be extremely difficult, assuming there's healthy participation in the network - it would be much more difficult than the 51% attack on bitcoin.
+The attacker would have to control enough of the network that 'old-style 32 bit coins' with 32 bit names were ruled to be invalid. This means an attacker needs to obtain consensus over every coin (a supermajority of all close groups for every coin). They'd have to control much more than 50% of the network, and have their voting power evenly distributed (even distribution is probably a reasonable assumption though, given how vault naming works). Controlling much more than 50% of the network should be extremely difficult, assuming there's healthy participation in the network - it would be much more difficult than the 51% attack on bitcoin.
 
 Can the individual data be attacked by sybil attacks?
 
