@@ -5,6 +5,8 @@ date:   2016-05-05 00:00:00 +0000
 updated: 2016-10-17 00:00:00 +0000
 categories: bitcoin
 ---
+Read in [English](#), [中文](https://maxweng.github.io/safe-network-explained.github.io/)
+
 If you already know how bitcoin works, it makes sense to build on that knowledge when trying to understand SAFE rather than start from scratch.
 
 Despite the safe and bitcoin networks having very similar goals and outcomes, the differences in the way they work are quite substantial. If any of the explanations below seem labored, it's because bitcoin concepts only extend so far into describing the safe network. The similarities will take us a fair way, but eventually there are limitations.
