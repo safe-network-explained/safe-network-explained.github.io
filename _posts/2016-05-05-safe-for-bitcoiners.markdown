@@ -39,7 +39,7 @@ The terms used as the headings for each section are like individual windows in a
 <li><a id="blocksize_toc" href="#blocksize" rel="nofollow">Blocksize</a></li>
 <li><a id="scaling_toc" href="#scaling" rel="nofollow">Scaling</a></li>
 <li><a id="incentives---goodness-is-more-rational-than-badness_toc" href="#incentives---goodness-is-more-rational-than-badness" rel="nofollow">Incentives - goodness is more rational than badness</a></li>
-<li><a id="and-sybil-attacks_toc" href="#and-sybil-attacks" rel="nofollow">51% and sybil attacks</a></li>
+<li><a id="51-and-sybil-attacks_toc" href="#51-and-sybil-attacks" rel="nofollow">51% and sybil attacks</a></li>
 <li><a id="proof-of-burn_toc" href="#proof-of-burn" rel="nofollow">Proof of burn</a></li>
 <li><a id="divisibility_toc" href="#divisibility" rel="nofollow">Divisibility</a></li>
 <li><a id="addresses_toc" href="#addresses" rel="nofollow">Addresses</a></li>
@@ -585,7 +585,7 @@ It's worth reading more about attacks to the safe network, since this is a compl
 
 It's also worth reading about [Node Ageing](https://github.com/maidsafe/rfcs/blob/master/text/0045-node-ageing/0045-node-ageing.md), which affects the difficulty of joining the network and exerting authority over data.
 
-[Back to Table Of Contents](#and-sybil-attacks_toc)
+[Back to Table Of Contents](#51-and-sybil-attacks_toc)
 
 ### Proof of burn
 
