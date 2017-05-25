@@ -81,6 +81,8 @@ To directly compare the language for the security of the bitcoin vs safe network
 
 For more reading about consensus using close groups rather than a blockchain, it's worth reading [Consensus Systems](https://blog.maidsafe.net/tag/consensus-systems/) on the maidsafe blog. It's also worth reading about [Disjoint Groups](https://github.com/maidsafe/rfcs/blob/master/text/0037-disjoint-groups/0037-disjoint-groups.md).
 
+Another important development to understand is how to balance the conflicting goals of 'easily starting a node' and 'enforcing security against group targeting'. This is described in the [Node Ageing RFC](https://github.com/maidsafe/rfcs/blob/master/text/0045-node-ageing/0045-node-ageing.md), and depends on the [data chains feature](https://github.com/maidsafe/rfcs/blob/master/text/0029-data-chains.md/0029-data-chains.md). These two ideas work together to form an additional layer of security to the close group consensus algorithm.
+
 In the same way the blockchain was the key innovation that allowed the realization of bitcoin, close group consensus is the key innovation that allows safe to provide the same functionality but with vastly improved efficiency.
 
 [Back to Table Of Contents](#blockchain_toc)
@@ -283,6 +285,8 @@ It's extremely likely that if the safe network is successful it will have enterp
 If the safe network becomes primarily centralized to a small number of giant data centers, it would have some pros and some cons.
 
 Imagine a large-scale blackout across a nation. This could have extreme impact on the safe network, and possibly induce churn events that cannot be resolved. This is true of the network even without centralized farming, but would be especially prominent as farming becomes more centralized. This situation is a lot like the type of runaway bitcoin might face if verification of blocks takes longer than ten minutes, leading to a situation where it's impossible to catch up to the head of the blockchain.
+
+On a related tangent, [data chains](https://metaquestions.me/2016/07/20/data-chains-what-why-how/) will allow the network to be restored in the event of catastrophic failure, so data will not be lost.
 
 Imagine collusion between data centers. They may be able to destroy individual bits of data, but they wouldn't know what they were destroying. They wouldn't be able to modify it in a meaningful way because they wouldn't be able to decrypt and re-encrypt the data without the keys, which only the owner has.
 
@@ -928,10 +932,12 @@ Here's some of the essential phrases and words for taking part in a technical co
 * churn
 * close group consensus
 * crust (connected rust)
+* [data chains](https://metaquestions.me/2016/07/20/data-chains-what-why-how/) - also see [the RFC](https://github.com/maidsafe/rfcs/blob/master/text/0029-data-chains.md/0029-data-chains.md)
 * distributed hash table (DHT), especially the kademlia implementation
 * farming
 * k-buckets, especially the [unique implementation](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0019-new-kademlia-routing-logic/0019-new-kademlia-routing-logic.md) in the safe network
 * network addressable element
+* node ageing, see [the RFC](https://github.com/maidsafe/rfcs/blob/master/text/0045-node-ageing/0045-node-ageing.md)
 * opportunistic caching
 * recycling safecoin
 * self-encryption
