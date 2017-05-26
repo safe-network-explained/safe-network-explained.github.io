@@ -403,7 +403,7 @@ Bitcoin has a unique governance model, initially dominated by individuals such a
 
 How does this compare with the governance of safe network?
 
-Safe network has a single implementation, unlike bitcoin which has several implementations. The SAFE Network is being developed and implemented by MaidSafe.net, a Scottish for profit company. The company has been set up with a Scottish charity, the MaidSafe Foundation, as its largest shareholder ensuring that dividends will be used to meet the Foundations charitable objects, which are to foster education and innovation.
+The SAFE network has a single implementation, unlike bitcoin which has several implementations. The SAFE Network is being developed and implemented by MaidSafe.net, a Scottish for profit company. The company has been set up with a Scottish charity, the MaidSafe Foundation, as its largest shareholder ensuring that dividends will be used to meet the Foundations charitable objectives, which are to support education and foster innovation.
 
 The project is open source and accepts contributions from the community if they fit or improve the design.
 
