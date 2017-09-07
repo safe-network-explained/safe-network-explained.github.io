@@ -234,20 +234,20 @@ End users benefit from secure-by-default modules and a flexible permissions laye
 
 ## References
 
-[1] David Irvine, Fraser Hutchison, Steve Mücklisch, "Autonomous Network", 2010, http://docs.maidsafe.net/Whitepapers/pdf/AutonomousNetwork.pdf
+[1] David Irvine, Fraser Hutchison, Steve Mücklisch, "Autonomous Network", 2010, [http://docs.maidsafe.net/Whitepapers/pdf/AutonomousNetwork.pdf](http://docs.maidsafe.net/Whitepapers/pdf/AutonomousNetwork.pdf)
 
-[2] David Irvine, "Self Encrypting Data", 2010, http://docs.maidsafe.net/Whitepapers/pdf/SelfEncryptingData.pdf
+[2] David Irvine, "Self Encrypting Data", 2010, [http://docs.maidsafe.net/Whitepapers/pdf/SelfEncryptingData.pdf](http://docs.maidsafe.net/Whitepapers/pdf/SelfEncryptingData.pdf)
 
-[3] David Irvine, "Self-Authentication", 2010, http://docs.maidsafe.net/Whitepapers/pdf/SelfAuthentication.pdf
+[3] David Irvine, "Self-Authentication", 2010, [http://docs.maidsafe.net/Whitepapers/pdf/SelfAuthentication.pdf](http://docs.maidsafe.net/Whitepapers/pdf/SelfAuthentication.pdf)
 
-[4] "Structuring Networks With XOR", 2016, https://blog.maidsafe.net/2016/05/27/structuring-networks-with-xor/
+[4] "Structuring Networks With XOR", 2016, [https://blog.maidsafe.net/2016/05/27/structuring-networks-with-xor/](https://blog.maidsafe.net/2016/05/27/structuring-networks-with-xor/)
 
-[5] Nikita Baksalyar, "Mutable Data", 2016, https://github.com/maidsafe/rfcs/blob/master/text/0047-mutable-data/0047-mutable-data.md
+[5] Nikita Baksalyar, "Mutable Data", 2016, [https://github.com/maidsafe/rfcs/blob/master/text/0047-mutable-data/0047-mutable-data.md](https://github.com/maidsafe/rfcs/blob/master/text/0047-mutable-data/0047-mutable-data.md)
 
-[6] David Irvine, Data Chains, 2016, https://github.com/maidsafe/rfcs/blob/master/text/0029-data-chains.md/0029-data-chains.md
+[6] David Irvine, Data Chains, 2016, [https://github.com/maidsafe/rfcs/blob/master/text/0029-data-chains.md/0029-data-chains.md](https://github.com/maidsafe/rfcs/blob/master/text/0029-data-chains.md/0029-data-chains.md)
 
-[7] "Introduction & Technical Overview Of Safe Consensus", 2016, https://blog.maidsafe.net/2016/06/23/introduction-technical-overview-of-safe-consensus/
+[7] "Introduction & Technical Overview Of Safe Consensus", 2016, [https://blog.maidsafe.net/2016/06/23/introduction-technical-overview-of-safe-consensus/](https://blog.maidsafe.net/2016/06/23/introduction-technical-overview-of-safe-consensus/)
 
-[8] Andreas Fackler, "Disjoint Sections", 2016, https://github.com/maidsafe/rfcs/blob/master/text/0037-disjoint-groups/0037-disjoint-groups.md
+[8] Andreas Fackler, "Disjoint Sections", 2016, [https://github.com/maidsafe/rfcs/blob/master/text/0037-disjoint-groups/0037-disjoint-groups.md](https://github.com/maidsafe/rfcs/blob/master/text/0037-disjoint-groups/0037-disjoint-groups.md)
 
-[9] Nick Lambert, Qi Ma, David Irvine, "Safecoin: The Decentralised Network Token", 2015, http://docs.maidsafe.net/Whitepapers/pdf/Safecoin.pdf
+[9] Nick Lambert, Qi Ma, David Irvine, "Safecoin: The Decentralised Network Token", 2015, [http://docs.maidsafe.net/Whitepapers/pdf/Safecoin.pdf](http://docs.maidsafe.net/Whitepapers/pdf/Safecoin.pdf)
