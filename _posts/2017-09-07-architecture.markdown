@@ -37,8 +37,6 @@ SAFE operates on existing physical internet infrastructure, but replaces all lay
 
 Clients can upload and download data from the SAFE network. This section outlines how these operations are conducted.
 
-TODO overview graphic
-
 ### Resource Identifiers
 
 Clients that wish to download data from the SAFE network require software that can translate SAFE resource identifiers to enpoints on the SAFE network, much like how browsers translate http URLs to endpoints on a server. Downloading data requires no special permissions or access, just software that can locate and interpret the data on the network.
