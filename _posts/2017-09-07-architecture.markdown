@@ -11,7 +11,7 @@ categories: architecture
 
 ## Summary
 
-The SAFE network is an autonomous distributed network for data storage and retrieval [1]. It provides Secure Access For Everyone (SAFE). Data stored on the network has extremely high availablity, durability, privacy and security. The network scales efficiently and the security of data stored on the network increases as the network grows.
+The SAFE network is an autonomous distributed network for data storage and retrieval [1]. It provides Secure Access For Everyone (SAFE). Data stored on the network has extremely high availability, durability, privacy and security. The network scales efficiently and the security of data stored on the network increases as the network grows.
 
 ## Introduction
 
@@ -29,7 +29,7 @@ Network tokens are distributed to vault operators by the network for providing t
 
 The network utilises SHA3-256 identifiers for vaults and data in combination with XOR distances between these identifiers to anonymise and globally distribute all data and traffic.
 
-Much of the existing internet infrastucture is improved by the SAFE network, including Addressing, Domain Name System, Transport Layer Security, Packet Routing, server software such as http web servers and imap mail servers, authentication layers such as oauth and openid; these are all superceded by secure-by-default modules that combine to make the SAFE network operable.
+Much of the existing internet infrastructure is improved by the SAFE network, including Addressing, Domain Name System, Transport Layer Security, Packet Routing, server software such as http web servers and imap mail servers, authentication layers such as oauth and openid; these are all superseded by secure-by-default modules that combine to make the SAFE network operable.
 
 SAFE operates on existing physical internet infrastructure, but replaces all layers of the network from there up. It primarily targets OSI layers 3 to 7.
 
@@ -130,7 +130,7 @@ The content of mutable data may point to other mutable data, allowing the creati
 
 ## Network Operations
 
-There are several operations performed by the network that allow clients to store and retrieve data securely and reliably. These operations give rise to an autonomous self-healing network which is resistent to attack.
+There are several operations performed by the network that allow clients to store and retrieve data securely and reliably. These operations give rise to an autonomous self-healing network which is resistant to attack.
 
 ### Close Group Consensus
 
