@@ -7,11 +7,11 @@ categories: architecture
 ---
 # SAFE Network Architecture
 
-## A Secure Distributed Data Storage And Retrieval System
+## A Secure Distributed Data Storage And Communications Network
 
 ## Summary
 
-The SAFE network is an autonomous distributed network for data storage and retrieval [1]. It provides Secure Access For Everyone (SAFE). Data stored on the network has extremely high availability, durability, privacy and security. The network scales efficiently and the security of data stored on the network increases as the network grows.
+The SAFE network is an autonomous distributed network for data storage and communications [1]. It provides Secure Access For Everyone (SAFE). Data stored on the network has extremely high availability, durability, privacy and security. The network scales efficiently and the security of data stored on the network increases as the network grows.
 
 ## Introduction
 
@@ -25,7 +25,7 @@ Clients benefit from secure defaults, including built-in end-to-end encryption a
 
 The network is comprised of a graph of independently operated nodes (called vaults) that validate, store and deliver data. Vault operators can contribute to the retention of network data and network performance by supplying disc space and bandwidth for use by the network. Vault operators may join or leave the network at any time without affecting the security of data stored on the network.
 
-Network tokens are distributed to vault operators by the network for providing these resources. The tokens may then be used to purchase network storage space for their own use or to utilise other resources on the network. This motivates benevolent behaviour of vault operators and protects the network against malicious behaviour.
+Network tokens called Safecoin are distributed to vault operators by the network for providing these resources. The tokens may then be used to purchase network storage space for their own use or to utilise other resources on the network. This motivates benevolent behaviour of vault operators and protects the network against malicious behaviour.
 
 The network utilises SHA3-256 identifiers for vaults and data in combination with XOR distances between these identifiers to anonymise and globally distribute all data and traffic.
 
@@ -41,7 +41,7 @@ Clients can upload and download data from the SAFE network. This section outline
 
 Clients that wish to download data from the SAFE network require software that can translate SAFE resource identifiers to enpoints on the SAFE network, much like how browsers translate http URLs to endpoints on a server. Downloading data requires no special permissions or access, just software that can locate and interpret the data on the network.
 
-Resources are stored on the network as content addressable resources. The identifier for these resources are SHA3-256 hashes of on the resource content. This 256 bit identifier is used to retrieve a resource from the network (thus acting similarly to an IP address), allowing the client to specify which part of the network may be able to serve their request.
+Resources are stored on the network as content addressable resources. The identifier for these resources are SHA3-256 hashes of the resource content. This 256 bit identifier is used to retrieve a resource from the network (thus acting similarly to an IP address), allowing the client to specify which part of the network may be able to serve their request.
 
 The 256 bit resource identifier may be represented in a human-friendly form using the built-in SAFE DNS, such as `safe://www.userX/video.mp4`. This can be converted to the 256 bit identifier for the file by a lookup on the SAFE network using software that can interpret SAFE DNS records.
 
@@ -156,7 +156,7 @@ This depends on vaults in the group having:
 
 ### Vault Naming
 
-All vaults are allocated a random unique 256 bit identifier by the network upon joining. Vaults that are close together (measured by the XOR distance between their identifiers) form groups. The vaults in a group work together to form consensus about data on the network so it may be stored and retrieved. Groups are formed in sets of between 8 and 16 close vaults. The more vaults on the network, the greater the number groups on the network.
+All vaults are allocated a random unique 256 bit identifier by the network upon joining or rejoining. Vaults that are close together (measured by the XOR distance between their identifiers) form groups. The vaults in a group work together to form consensus about data on the network so it may be stored and retrieved. Groups are formed in sets of between 8 and 16 close vaults. The more vaults on the network, the greater the number groups on the network.
 
 If a majority of vaults in a group are dishonest, the data in that group is vulnerable to corruption.
 
@@ -172,7 +172,7 @@ Overcoming the network-allocated-identifier for new vaults is the primary source
 
 A practical consideration of the formation of groups is the efficiency of inter-group messaging (ie consensus of group membership rather than consensus of individual vault behaviour).
 
-Groups are formed based on the similarity of the leading bits of their identifier (this portion of the identifier is called the Section).
+Groups are formed based on the similarity of the leading bits of their identifier (this portion of the identifier is called the Prefix for the Section).
 
 This makes the coordination of vaults leaving or joining the group much simpler.
 
@@ -220,7 +220,7 @@ The network defines cooperative behaviour as the reliable supply of bandwidth an
 
 ## Conclusion
 
-The SAFE network is an autonomous network for reliable storage and retrieval of data. Combined with a messaging system it forms a secure and private alternative to much of the existing infrastructure of the internet.
+The SAFE network is an autonomous network for reliable data storage and communications. The combination of a robust data storage and messaging system forms a secure and private alternative to much of the existing infrastructure of the internet.
 
 Data is stored efficiently and reliably on the network using content addressable resource identifiers and self encryption.
 
