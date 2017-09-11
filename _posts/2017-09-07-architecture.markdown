@@ -156,7 +156,7 @@ This depends on vaults in the group having:
 
 ### Vault Naming
 
-All vaults are allocated a random unique 256 bit identifier by the network upon joining or rejoining. Vaults that are close together (measured by the XOR distance between their identifiers) form groups. The vaults in a group work together to form consensus about data on the network so it may be stored and retrieved. Groups are formed in sets of between 8 and 16 close vaults. The more vaults on the network, the greater the number groups on the network.
+All vaults are allocated a random unique 256 bit identifier by the network upon joining or rejoining. Vaults that are close together (measured by the XOR distance between their identifiers) form groups. The vaults in a group work together to form consensus about data on the network so it may be stored and retrieved. Groups are formed in sets of between 8 and 22 close vaults. The more vaults on the network, the greater the number groups on the network.
 
 If a majority of vaults in a group are dishonest, the data in that group is vulnerable to corruption.
 
@@ -178,7 +178,7 @@ This makes the coordination of vaults leaving or joining the group much simpler.
 
 If groups were to retain a constant membership of 8 vaults, there's a need to reorganizing individual vaults between groups as new vaults join and leave. This may have a cascading effect on nearby groups.
 
-Rather than do this cascading reorganization, groups may vary in size between 8 and 16 vaults. If a group becomes larger than 16 vaults it's split into two new groups, and if it becomes less than 8 vaults it's merged back into the nearest group.
+Rather than do this cascading reorganization, groups may vary in size between 8 and 22 vaults. If a group becomes larger than 22 vaults it's split into two new groups, and if it becomes less than 8 vaults it's merged back into the nearest group.
 
 This method of organizing groups is called Disjoint Sections [8].
 
