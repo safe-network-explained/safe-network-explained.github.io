@@ -127,7 +127,7 @@ Quite differently, every safecoin is a discrete piece of data with its own locat
 
 This fundamentally different way of representing tokens is how safecoins can be transferred so quickly and with such high confidence. The transfer mechanism of safecoin is quite different to that of bitcoin.
 
-A safecoin is a special package of data (called structured data) which contains details of the current owner and the previous owner. To transfer ownership of that coin, the current owner must verify their ownership (similar to a signature in a bitcoin transaction). If they own the coin, they are allowed to change the data for the coin's current owner to be the new owner. The 'current owner' of a safecoin is like the utxo of a bitcoin transaction. The 'previous owner' is like the input that generated the utxo. Safecoins ownership can be traced back to only the current and previous owners, whereas bitcoins ownership can be traced back to the initial generation, which may include hundreds or thousands of owners.
+A safecoin is a special package of data (called mutable data) which contains details of the current owner (among other things). To transfer ownership of that coin, the current owner must verify their ownership (similar to a signature in a bitcoin transaction). If they own the coin, they are allowed to change the data for the coin's current owner to the new owner. The 'current owner' of a safecoin is like the utxo of a bitcoin transaction. Safecoins ownership can be traced only to the current owner, whereas bitcoins ownership can be traced back to the initial generation, which may include hundreds or thousands of owners.
 
 Transferring safecoin is a single atomic data event on the safe network. Once completed, it stays that way until the new owner decides to change it. There is no way it can be reversed, unlike bitcoin which can have changes to the mempool or even orphaned blocks.
 
@@ -168,7 +168,7 @@ A safecoin transaction is represented as a _modification_ to an existing piece o
 
 The safe network does not have a concept of zero confirmations (or confirmations at all) and transactions are final once committed to the network, which happens as soon as the close group nodes have reached consensus on the change (typically less than a second).
 
-To better understand how transactions are made on the safe network, a good place to start is the entire [unified structured data](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0000-Unified-structured-data/0000-Unified-structured-data.md) rfc.
+To better understand how transactions are made on the safe network, a good place to start is the entire [mutable data](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0047-mutable-data/0047-mutable-data.md) rfc.
 
 [Back to Table Of Contents](#zero-confirmations_toc)
 
@@ -230,7 +230,7 @@ How does this compare with the long term sustainability and security of the safe
 
 One of the interesting features of safe is called 'recycling' coins. Performing certain actions on the network requires the expenditure of coin to the network itself, like how a bitcoin transaction requires leaving some 'unspent' coins which go to the miners in the form of a fee.
 
-Recycling safecoin means as long as people are actively using the network there will always be some supply of coins for vaults to claim via proof of resource. Recycling is actually a convenience term for a cumbersome technical phrase: creating a delete request on a safecoin structured data. If you want to know more about how recycling works, these are good terms to research.
+Recycling safecoin means as long as people are actively using the network there will always be some supply of coins for vaults to claim via proof of resource. Recycling is actually a convenience term for a cumbersome technical phrase: creating a delete request on a safecoin mutable data. If you want to know more about how recycling works, these are good terms to research.
 
 Recycling is sometimes said to affect the economics of the safe network, because it allows the same coin to be 'minted' multiple times. Some people say this makes safecoin inflationary, but since there can never be more than 4.3B coins this isn't really true. It's like saying bitcoin is inflationary because the miners continue to receive coin from fees - in both bitcoin and the safe network the coins all come from the same limited resource pool, which makes both coins deflationary.
 
@@ -435,7 +435,7 @@ Safe is perhaps a competitor, depending how the relation is framed. Bitcoin is s
 
 The relationship and classification of safe relative to bitcoin depends on the perspective of each individual. Personally, in my heart I consider it a competitor first, with the possibility that it may replace bitcoin. But in my head I accept safe will more realistically be a 'complement' to bitcoin, operating side by side and filling a different-yet-similar purpose.
 
-Another consideration here is that safecoin is simply a 'specific type of structured data on the safe network'. Other generic types of structured data can (and will) be created on the safe network, which could be competing with or complementing safecoin. It may be that safecoin is not the dominant currency on the safe network, it all depends on adoption from users. One thing in safecoins favor is it will be the only currency that can be used to put data on the network, giving it a strong advantage over other structured-data-as-currency.
+Another consideration here is that safecoin is simply a 'specific type of mutable data on the safe network'. Other generic types of mutable data can (and will) be created on the safe network, which could be competing with or complementing safecoin. It may be that safecoin is not the dominant currency on the safe network, it all depends on adoption from users. One thing in safecoins favor is it will be the only currency that can be used to put data on the network, giving it a strong advantage over other mutable-data-as-currency.
 
 [Back to Table Of Contents](#altcoin_toc)
 
@@ -455,7 +455,7 @@ Safecoin is simple to use, equally simple as bitcoin since it uses the same unde
 
 Safecoin is peer to peer, there's no middle-man in charge of the transaction. Nobody can prevent safecoin being transferred from one person to another. Safecoin you own is yours and nobody can take it or prevent you from spending it.
 
-To better understand the properties of safecoin as a form of digital cash, it's best to read about how [structured data](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0000-Unified-structured-data/0000-Unified-structured-data.md) works, since safecoin is a particular type of structured data.
+To better understand the properties of safecoin as a form of digital cash, it's best to read about how [mutable data](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0047-mutable-data/0047-mutable-data.md) works, since safecoin is a particular type of mutable data.
 
 [Back to Table Of Contents](#digital-cash_toc)
 
@@ -627,7 +627,7 @@ How does safe make it simple to receive safecoin?
 
 Since safecoin has not yet been implemented, this is not totally clear. What is known is that a public key will be used to designate the current owner of the safecoin, which is a 256 bit value. This requires the receivers public key to be communicated somehow to the sender. The scheme for encoded public keys (if any) is not yet clear.
 
-To obtain a better understanding of how the owner of a coin is designated, check the [detailed design](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0000-Unified-structured-data/0000-Unified-structured-data.md#structureddata) of structured data in the rfc.
+To obtain a better understanding of how the owner of a coin is designated, check the [detailed design](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0047-mutable-data/0047-mutable-data.md) of mutable data in the rfc.
 
 [Back to Table Of Contents](#addresses_toc)
 
@@ -642,8 +642,6 @@ Any coin can only be transferred if the signature of the transaction matches tha
 This means if the coin is transferred to someone else, the previous owner can no longer make changes to that coin. The change is irreversible.
 
 An interesting point on this is that unlike bitcoin which must have the transaction included in a block before it's considered irreversible, safecoin is instantly irreversible.
-
-Note that transferring safecoin is a POST action, not a PUT, so costs nothing to perform. This is outlined at the bottom of the [validation section](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0000-Unified-structured-data/0000-Unified-structured-data.md#validation) of the unified structured data rfc. This is a big advantage over bitcoin, where every change to ownership costs money. Lightning network will go a long way to improving that for bitcoin, but at the added cost of complexity.
 
 [Back to Table Of Contents](#irreversible_toc)
 
@@ -765,17 +763,15 @@ Bitcoin transactions are actually tiny programs. They're verified by executing t
 
 How does safe network handle complex permissions for the movement of data on the safe network?
 
-This is another two-parter. Immutable data does not move, so we'll ignore that here. The second part is mutable data, ie structured data.
+This is another two-parter. Immutable data does not move, so we'll ignore that here. The second part is mutable data.
 
-Structured data does allow multisig control of coins. In the [validation](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0000-Unified-structured-data/0000-Unified-structured-data.md#validation) section of the structured data rfc, it's clearly shown and explained how multisig will be implemented.
+Mutable data will allow multisig control of coins. However, in the [detailed design](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0047-mutable-data/0047-mutable-data.md#detailed-design) section of the mutable data rfc, it's stated that the owners field is "currently limited to one owner to disallow multisig". The current data type used for the owners field can easily be extended to multisig in the future.
 
-I personally feel this is a lost opportunity, and that a more generic scripting signature system like bitcoin should be used in structured data. This would allow for powerful smart contracts to govern the movement of data, and facilitate extremely interesting interactions on the network. There is no doubt in my mind that structured data will change significantly in regard to the signing logic, since this could also open the door to pay-for-computation-resource rather than just storage and bandwidth resource.
+I personally feel this is a lost opportunity, and that a more generic scripting signature system like bitcoin should be used in mutable data. This would allow for powerful smart contracts to govern the movement of data, and facilitate extremely interesting interactions on the network. There is no doubt in my mind that mutable data will change significantly in regard to the signing logic, since this could also open the door to pay-for-computation-resource rather than just storage and bandwidth resource.
 
-The similarities and unmet potential in the design of structured data compared with bitcoin and ethereum hint at the opportunities that may be unlocked via safecoin in the future.
+The similarities and unmet potential in the design of mutable data compared with bitcoin and ethereum hint at the opportunities that may be unlocked via safecoin in the future.
 
 I think the decision to keep it simple for now is a good one, since it allows the development to focus on key components of the network rather than 'nice but not essential future stuff'. Very pragmatic, so long as it doesn't end up with a blockage to progress later due to governance issues.
-
-Note that multisig in safecoin is not m-of-n like with bitcoin. Multisig safecoin is strictly 'at least 50% of signers'. I think aiming for m-of-n is setting the goals way short of the target, and I'm sure once you understand how structured data works you will agree. 50% multisig is an appropriate pragmatic approach in these early days of the network, but be prepared for radical change to this in the future. I'm sensing governance and rules issues ahead!!
 
 [Back to Table Of Contents](#multisig_toc)
 
@@ -785,13 +781,15 @@ As discussed in the multisig section, smart contracts are a hot topic in the wor
 
 Does safe support smart contracts?
 
-Yes and no. The structured data component which is responsible for safecoins does not support smart contracts as we know them. It may in the future, but not the foreseeable future. One of the big decisions facing smart contracts is whether to make them turing complete, and if so, how to manage the incentive structure and costs around looping logic. All this is for the future, but the underlying safe network seems incredibly strong, and that strength starts with structured data.
+Yes and no. The mutable data component which is responsible for safecoins does not support smart contracts as we know them. It may in the future, but not the foreseeable future. One of the big decisions facing smart contracts is whether to make them turing complete, and if so, how to manage the incentive structure and costs around looping logic. All this is for the future, but the underlying safe network seems incredibly strong, and that strength starts with mutable data.
 
-It's also possible that other structured data tokens besides safecoin may implement smart contracts, we can only know once the network is live and apps are being developed using the network.
+It's also possible that other mutable data tokens besides safecoin may implement smart contracts, we can only know once the network is live and apps are being developed using the network.
 
 Due to the efficiency of the safe network and the design around proof-of-resource instead of proof-of-work or proof-of-stake, it seems quite natural that smart contracts will live on this network, incentivising the consumption of computation resource along side the current design of storage and bandwidth resource.
 
 There may be other ways to implement smart contracts on the safe network other than utilizing safecoin. If you can think of any please add to the discussion using the link at the very bottom of all of this.
+
+A good place to start reading more is the blog post [Beyond a copy of the Internet](https://metaquestions.me/2017/09/06/connecting-ideas-and-providing-much-needed-solutions/) by David Irvine.
 
 [Back to Table Of Contents](#smart-contracts_toc)
 
@@ -829,7 +827,7 @@ What degrees of security can be applied to the safe network?
 
 There are a few parts to this.
 
-Firstly, security of keys for modifying structured data. This is identical to bitcoin and the exact same techniques apply. You can use cold storage here!
+Firstly, security of keys for modifying mutable data. This is identical to bitcoin and the exact same techniques apply. You can use cold storage here!
 
 Secondly, security of account details for the network. These allow you to access your private data, but nobody else. How can a user keep this information secure?
 
@@ -941,7 +939,7 @@ Here's some of the essential phrases and words for taking part in a technical co
 * opportunistic caching
 * recycling safecoin
 * self-encryption
-* structured data (mutable vs immutable data)
+* mutable data (mutable vs immutable data)
 * vault
 * vault persona
 * vault ranking
