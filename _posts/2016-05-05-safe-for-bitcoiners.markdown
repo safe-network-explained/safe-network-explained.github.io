@@ -2,7 +2,7 @@
 layout: post
 title:  "Safe Network explained using bitcoin terminology"
 date:   2016-05-05 00:00:00 +0000
-updated: 2016-10-17 00:00:00 +0000
+updated: 2017-10-06 00:00:00 +0000
 categories: bitcoin
 ---
 Read in [English](#), [中文](https://maxweng.github.io/safe-network-explained.github.io/)
@@ -831,11 +831,9 @@ Firstly, security of keys for modifying mutable data. This is identical to bitco
 
 Secondly, security of account details for the network. These allow you to access your private data, but nobody else. How can a user keep this information secure?
 
-Unlocking your account requires three pieces of data. A keyword, a pin, and a password. It's worth reading about why this [curious login mechanism](https://safenetwork.wiki/en/Accessing_the_SAFE_Network) is used instead of the username password paradigm we're all familiar with. It's something you could be explaining to new users _a lot_.
+Unlocking your account requires two pieces of data. A secret and a password. There's been a lot of discussion about why this [curious login mechanism](https://safenetforum.org/t/discussion-about-the-password-requirements-in-safe-launcher/10497) is used instead of the username password paradigm we're all familiar with. It's something you could be explaining to new users _a lot_.
 
-So the takeaway with client login is that the user has to keep three bits of information secure. I'm not that convinced it'll work that well. People tend to pick terrible passwords, and now there's three parts to remember it'll only make it weaker or people will write it down which is probably not going to be stored securely, or will be lost. To me, this is one of the great yet weak parts of the network.
-
-You can surely see the weakness, but what's so great about it? Convenience. This one login is used as a seed to generate a unique login for every app that uses the safe network. This (to me anyway) is amazing. Reuse of passwords will be a thing of the past. Short and insecure passwords, also in the past. This style of login and identity management has been a long time in the making, hopefully the safe network popularizes it and it works as expected. We can only know by seeing how users use it.
+There's one particularly good aspect to the login mechanism: convenience. This one login is used as a seed to derive a unique login for every app that uses the safe network. This (to me anyway) is amazing. Reuse of passwords will be a thing of the past. Short and insecure passwords, also in the past. This style of login and identity management has been a long time in the making, hopefully the safe network popularizes it and it works as expected. We can only know by seeing how users use it. There's a lot more detail in the [new auth flow](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0046-new-auth-flow/0046-new-auth-flow.md) rfc.
 
 It raises a good question though - why do I need an account, where are my login credentials stored and how do I change them?
 
@@ -849,7 +847,7 @@ The question remains, how does a user change their account details like their pa
 
 I don't have a good answer to this. If you have one, please let me know using the link at the bottom of this whole thing.
 
-Read more about the [client login process](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0010-Launcher-as-a-service/0010-Launcher-as-a-service.md) on the launcher rfc.
+Read more about the client and app authentication and authorization in the [new auth flow](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0046-new-auth-flow/0046-new-auth-flow.md) rfc.
 
 [Back to Table Of Contents](#cold-storage_toc)
 
