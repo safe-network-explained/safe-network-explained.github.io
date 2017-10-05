@@ -204,6 +204,8 @@ Read more about [proof of resource](https://safenetwork.wiki/en/Proof_of_resourc
 
 The information in the [safecoin](https://github.com/maidsafe/rfcs/blob/cd47937ebf053e90bde20f18eced2866854e8234/text/0012-safecoin-implementation/0012-safecoin-implementation.md) rfc is also valuable.
 
+There's also a [safecoin whitepaper](http://docs.maidsafe.net/Whitepapers/pdf/Safecoin.pdf) with more information.
+
 [Back to Table Of Contents](#mining-block-reward_toc)
 
 ### Deflation, scarcity, and monetary policy
