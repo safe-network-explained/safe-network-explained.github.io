@@ -193,7 +193,7 @@ This distribution does change slightly depending on the initial conditions of th
 
 The splitting and merging algorithm is fairly difficult to deduce from the source code. The logic is mainly located in [maidsafe/routing](https://github.com/maidsafe/routing), see [node.rs](https://github.com/maidsafe/routing/blob/57a18a6b974628c3be032ca97aced362f1714a9a/src/states/node.rs) and [peer_manager.rs](https://github.com/maidsafe/routing/blob/f8bf1212a7fc75212b6820eb97355ea340cfbee7/src/peer_manager.rs).
 
-The simulation code is at [github.com/iancoleman/group_size_distribution_simulation](https://github.com/iancoleman/group_size_distribution_simulation). Might tidy it up by writing it in golang another day. The simulation is deterministic, so the same seed will always produce the same simulation which is a handy thing.
+The simulation code is at [github.com/iancoleman/safe_network_simulations](https://github.com/iancoleman/safe_network_simulations). The simulation is deterministic, so the same seed will always produce the same simulation which is a handy thing.
 
 ## More Reading
 
