@@ -106,6 +106,8 @@ It's worth noting that `section 00` (the section it merges into) cannot exist on
 
 Merging is definitely more complex than splitting, but the fundamental decisions are still quite simple. Hopefully someone closer to the code can clarify what happens when the simplest merge situation can't be performed.
 
+One of the neat things about merging and splitting is splitting needs more than 11 vaults for each new section but merging needs less than 8. So even if a vault or two leaves immediately after a split it won't cause a merge. This buffer makes it hard to induce lots of churn just when a section has split by trying to make it merge.
+
 ## Section Size Distribution
 
 One of the implicit features of this mechansim is sections have no upper limit on their size.
