@@ -13,3 +13,11 @@ View the site at [https://safe-network-explained.github.io](https://safe-network
 The site uses [jekyll](https://jekyllrb.com/) so please add your content under `_posts`.
 
 Have style? A new design would be welcomed. Take a look in `_sass`, `css`, `_layouts`, `_includes`.
+
+# License
+
+All content is licensed as
+
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+https://creativecommons.org/licenses/by/4.0/
