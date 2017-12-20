@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Safe Network explained using bitcoin terminology"
+author: "Ian Coleman"
 date:   2016-05-05 00:00:00 +0000
 updated: 2017-10-06 00:00:00 +0000
 categories: bitcoin

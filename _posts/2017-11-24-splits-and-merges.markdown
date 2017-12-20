@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Splitting and Merging"
+author: "Ian Coleman"
 date:   2017-11-24 00:00:00 +0000
 updated: 2017-11-27 00:00:00 +0000
 ---
