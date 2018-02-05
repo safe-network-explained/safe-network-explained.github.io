@@ -11,13 +11,13 @@ The code for splits and merges is quite difficult to interpret but I think I've 
 
 # Splitting and Merging Sections
 
-Splitting and merging sections on the safe network is an important and basic part of the network functionality. It determines which nodes are responsible for your data and how that responsibility changes over time. It's quite an elegant and fascinating mechanism and deserves some explanation.
+Splitting and merging sections on the SAFE Network is an important and basic part of the network functionality. It determines which nodes are responsible for your data and how that responsibility changes over time. It's quite an elegant and fascinating mechanism and deserves some explanation.
 
 ## Why Split And Merge
 
-The safe network consists of many vaults. 8 or more vaults can combine to form a cluster of nodes known as a 'section' which becomes responsible for any data allocated to it by the network.
+The SAFE Network consists of many vaults. 8 or more vaults can combine to form a cluster of nodes known as a 'section' which becomes responsible for any data allocated to it by the network.
 
-The structure of the section that form the safe network is constantly changing. New vaults will periodically join a section (making the section larger) and existing vaults periodically leave the section (making the section smaller).
+The structure of the section that form the SAFE Network is constantly changing. New vaults will periodically join a section (making the section larger) and existing vaults periodically leave the section (making the section smaller).
 
 Very large sections are detrimental to the network because they create a centralisation risk to the data they're responsible for.
 

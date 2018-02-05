@@ -12,15 +12,15 @@ categories: architecture
 
 ## Summary
 
-The SAFE network is an autonomous distributed network for data storage and communications [1]. It provides Secure Access For Everyone (SAFE). Data stored on the network has extremely high availability, durability, privacy and security. The network scales efficiently and the security of data stored on the network increases as the network grows.
+The SAFE Network is an autonomous distributed network for data storage and communications [1]. It provides Secure Access For Everyone (SAFE). Data stored on the network has extremely high availability, durability, privacy and security. The network scales efficiently and the security of data stored on the network increases as the network grows.
 
 ## Introduction
 
-The existing server-client-based internet gives ownership of data to whoever operates the servers, rather than the people creating the data. The operators can restrict, modify, remove or sell that data with no recourse from the user that created it. Poor acceptance and availability of federated protocols to distribute user data on terms that favour the creators has motivated the creation of the SAFE network.
+The existing server-client-based internet gives ownership of data to whoever operates the servers, rather than the people creating the data. The operators can restrict, modify, remove or sell that data with no recourse from the user that created it. Poor acceptance and availability of federated protocols to distribute user data on terms that favour the creators has motivated the creation of the SAFE Network.
 
-Clients storing data on the SAFE network are protected by default with strong encryption and can control access through a flexible permissions layer.
+Clients storing data on the SAFE Network are protected by default with strong encryption and can control access through a flexible permissions layer.
 
-Clients retrieving data from the SAFE network are protected by a secure routing and addressing system.
+Clients retrieving data from the SAFE Network are protected by a secure routing and addressing system.
 
 Clients benefit from secure defaults, including built-in end-to-end encryption and secure authentication.
 
@@ -30,25 +30,25 @@ Network tokens called Safecoin are distributed to vault operators by the network
 
 The network utilises SHA3-256 identifiers for vaults and data in combination with XOR distances between these identifiers to anonymise and globally distribute all data and traffic.
 
-Much of the existing internet infrastructure is improved by the SAFE network, including Addressing, Domain Name System, Transport Layer Security, Packet Routing, server software such as http web servers and imap mail servers, authentication layers such as oauth and openid; these are all superseded by secure-by-default modules that combine to make the SAFE network operable.
+Much of the existing internet infrastructure is improved by the SAFE Network, including Addressing, Domain Name System, Transport Layer Security, Packet Routing, server software such as http web servers and imap mail servers, authentication layers such as oauth and openid; these are all superseded by secure-by-default modules that combine to make the SAFE Network operable.
 
 SAFE operates on existing physical internet infrastructure, but replaces all layers of the network from there up. It primarily targets OSI layers 3 to 7.
 
 ## Client Operations
 
-Clients can upload and download data from the SAFE network. This section outlines how these operations are conducted.
+Clients can upload and download data from the SAFE Network. This section outlines how these operations are conducted.
 
 ### Resource Identifiers
 
-Clients that wish to download data from the SAFE network require software that can translate SAFE resource identifiers to enpoints on the SAFE network, much like how browsers translate http URLs to endpoints on a server. Downloading data requires no special permissions or access, just software that can locate and interpret the data on the network.
+Clients that wish to download data from the SAFE Network require software that can translate SAFE resource identifiers to enpoints on the SAFE Network, much like how browsers translate http URLs to endpoints on a server. Downloading data requires no special permissions or access, just software that can locate and interpret the data on the network.
 
 Resources are stored on the network as content addressable resources. The identifier for these resources are SHA3-256 hashes of the resource content. This 256 bit identifier is used to retrieve a resource from the network (thus acting similarly to an IP address), allowing the client to specify which part of the network may be able to serve their request.
 
-The 256 bit resource identifier may be represented in a human-friendly form using the built-in SAFE DNS, such as `safe://www.userX/video.mp4`. This can be converted to the 256 bit identifier for the file by a lookup on the SAFE network using software that can interpret SAFE DNS records.
+The 256 bit resource identifier may be represented in a human-friendly form using the built-in SAFE DNS, such as `safe://www.userX/video.mp4`. This can be converted to the 256 bit identifier for the file by a lookup on the SAFE Network using software that can interpret SAFE DNS records.
 
 ### Self Encryption
 
-Resources on the SAFE network are never more than 1 MB each. Clients working with files larger than 1 MB will have their data automatically split into 1 MB chunks that are then distributed across the network.
+Resources on the SAFE Network are never more than 1 MB each. Clients working with files larger than 1 MB will have their data automatically split into 1 MB chunks that are then distributed across the network.
 
 This means a typical file on the network consists of several parts: *chunks* which are individual 1 MB portions after the file is split, and a *datamap* which stores the identifier of each portion of the file. The network sees the datamap as just another chunk.
 
@@ -103,13 +103,13 @@ Nodes along the route can cache the chunk so if another request for it is made l
 
 ### Messaging
 
-Email and instant messaging are ubiquitous experiences of the current internet. The SAFE network facilitates messaging which can replace imap / smtp / xmpp servers.
+Email and instant messaging are ubiquitous experiences of the current internet. The SAFE Network facilitates messaging which can replace imap / smtp / xmpp servers.
 
-A message may be stored on the network the same way any resource may be stored. To ensure the message remains private, the message may be encrypted prior to sending using the recipients key (that key can also be stored as a resource on the safe network). By the same method, connections between contacts (like the gpg web of trust) may also be represented on the network by resources. This collection of resources form the foundation for a secure messaging platform.
+A message may be stored on the network the same way any resource may be stored. To ensure the message remains private, the message may be encrypted prior to sending using the recipients key (that key can also be stored as a resource on the SAFE Network). By the same method, connections between contacts (like the gpg web of trust) may also be represented on the network by resources. This collection of resources form the foundation for a secure messaging platform.
 
 The only remaining step is to notify the recipient when they have received a message.
 
-On the current internet, new messages are typically presented to the user by adding a message to their inbox. Since an inbox is simply a list of messages, this list may be represented as a resource on the network. However, in the case of the SAFE network, the inbox is created not as immutable data, but as mutable data. This second data type has a fixed identifier which does not depend on the content of the resource. This, combined with a permissions system, allows data at that identifier to be updated.
+On the current internet, new messages are typically presented to the user by adding a message to their inbox. Since an inbox is simply a list of messages, this list may be represented as a resource on the network. However, in the case of the SAFE Network, the inbox is created not as immutable data, but as mutable data. This second data type has a fixed identifier which does not depend on the content of the resource. This, combined with a permissions system, allows data at that identifier to be updated.
 
 This data type allows the recipient to be notified of their new message by updating the data located at the identifier for the recipients inbox. The inbox resource can be created with permission for anyone to append new data. The sender of the message appends the identifier of their message to the inbox of the recipient, and the recipient is able to locate the new message.
 
@@ -221,7 +221,7 @@ The network defines cooperative behaviour as the reliable supply of bandwidth an
 
 ## Conclusion
 
-The SAFE network is an autonomous network for reliable data storage and communications. The combination of a robust data storage and messaging system forms a secure and private alternative to much of the existing infrastructure of the internet.
+The SAFE Network is an autonomous network for reliable data storage and communications. The combination of a robust data storage and messaging system forms a secure and private alternative to much of the existing infrastructure of the internet.
 
 Data is stored efficiently and reliably on the network using content addressable resource identifiers and self encryption.
 
@@ -231,7 +231,7 @@ A network allocated token to incentivise the supply of resources within the agre
 
 The network improves in speed, security and reliability as more vaults are added, making rapid increases in scale a benefit rather than a concern.
 
-End users benefit from secure-by-default modules and a flexible permissions layer to control access in the manner best suit their needs. The SAFE network combines many individual modules to create a network with Secure Access For Everyone.
+End users benefit from secure-by-default modules and a flexible permissions layer to control access in the manner best suit their needs. The SAFE Network combines many individual modules to create a network with Secure Access For Everyone.
 
 ## References
 
