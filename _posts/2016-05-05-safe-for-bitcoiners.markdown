@@ -863,8 +863,7 @@ What's the safe community like and what issues has it presented for the progress
 This is something you're best to judge for yourself.
 
 * [Forum](https://safenetforum.org/) is the main place to commune.
-* [Reddit for maidsafe](https://www.reddit.com/r/maidsafe) is the bigger reddit community.
-* [Reddit for SAFE Network](https://www.reddit.com/r/safenetwork) is the smaller reddit community.
+* [Reddit for SAFE Network](https://www.reddit.com/r/safenetwork) is the main subreddit used by the SAFE Network community.
 
 I've found the community to be extremely welcoming and friendly, although there are of course a few bristly interactions and misunderstandings. The moderators and team of experts seem friendly and highly engaged. It's clearly still early days for the community, and it's generally a pretty nice place to be.
 
