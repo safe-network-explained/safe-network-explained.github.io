@@ -1,6 +1,6 @@
 # About
 
-The safe network can be difficult to understand. These explanations aim to make it simple.
+The SAFE Network can be difficult to understand. These explanations aim to make it simple.
 
 View the site at [https://safe-network-explained.github.io](https://safe-network-explained.github.io).
 

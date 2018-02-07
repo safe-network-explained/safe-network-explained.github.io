@@ -6,9 +6,9 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Safe Network Explained
+title: SAFE Network Explained
 description: > # this means to ignore newlines until "baseurl:"
-  The safe network can be difficult to understand. These explanations
+  The SAFE Network can be difficult to understand. These explanations
   make it easy.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://safe-network-explained.github.io" # the base hostname & protocol for your site
