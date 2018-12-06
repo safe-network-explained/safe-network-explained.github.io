@@ -106,9 +106,9 @@ These properties of both the data and the network make it extremely difficult to
 
 Self-encryption and chained close group consensus is how the SAFE Network retains integrity without using proof of work.
 
-Read more about [self-encryption on the wiki](https://safenetwork.wiki/en/Security_-_Self_encryption).
+Read more about [self-encryption on github](https://github.com/maidsafe/self_encryption/blob/master/README.md).
 
-Read more about chained close group consensus in [the vault repository](https://github.com/maidsafe/safe_vault/blob/87c64d6c74a403629b48d34bee9508706ca083b9/README.md#flows) and on the wiki [How Vaults Work](https://safenetwork.wiki/en/Vaults_(How_it_works)#Group_Consensus)
+Read more about chained close group consensus in [the vault repository](https://github.com/maidsafe/safe_vault/blob/87c64d6c74a403629b48d34bee9508706ca083b9/README.md#flows).
 
 [Back to Table Of Contents](#proof-of-work-for-verification_toc)
 
@@ -201,7 +201,7 @@ This should begin to illustrate how important the concept of close group consens
 
 The clever bit is the nodes doing the checking don't need to have the data in order to check it. They rely on the data having been initially stored in a specific way (ie consensus across a close group) which allows it to check on it again in the future without needing to have a copy of the data itself.
 
-Read more about [proof of resource](https://safenetwork.wiki/en/Proof_of_resource) on the wiki.
+Read more about [proof of resource](https://medium.com/safenetwork/proof-of-resource-on-the-safe-network-192d5c951ebc) on the safenetwork blog.
 
 The information in the [safecoin](https://github.com/maidsafe/rfcs/blob/cd47937ebf053e90bde20f18eced2866854e8234/text/0012-safecoin-implementation/0012-safecoin-implementation.md) rfc is also valuable.
 
@@ -256,8 +256,7 @@ A node is given an ongoing score by the network for how reliable it is. This sco
 At the current time there's no implementation or particularly robust design docs for these mechanisms, which is one of the indicators of how much work remains to be completed on safe, and how challenging the prior work has been to consume so much time in development.
 
 Read more about farm rate on
-[the wiki](https://safenetwork.wiki/en/Safecoins_(How_it_works)#Farming_rates)
-and [the safe vault docs](https://github.com/maidsafe/safe_vault/blob/master/docs/safecoin_farming_rate.md).
+[the safenetwork website](https://safenetwork.tech/faq/#about-farming).
 
 [Back to Table Of Contents](#difficulty--target_toc)
 
@@ -396,7 +395,7 @@ PmidManager vs MpidManager is a bit of esoteric naming, among many others. Go on
 
 There are surely others but these are some of the main ones. My main tip for novices is to make sure the use of 'maidsafe' and 'SAFE Network' are clear and consistent.
 
-Check out [the glossary](https://safenetwork.wiki/en/Glossary) on the wiki for more clarity.
+Check out [How It Works](https://safenetwork.tech/how-it-works/) on the safenetwork website for more clarity.
 
 [Back to Table Of Contents](#transaction-inputs-and-outputs_toc)
 
@@ -474,7 +473,7 @@ You may wonder how this can possibly be, considering safecoin and the SAFE Netwo
 
 The way it was arranged was by issuing an intermediate token on the mastercoin network called maidsafecoin. This coin is traded on exchanges and has a value that fluctuates, just like other coins.
 
-When the SAFE Network and safecoin is launched, maidsafecoin can be exchanged 1:1 for safecoin. The exact mechanism for this is not clear, but will probably be through a burn mechanism. The wiki has some [more information](https://safenetwork.wiki/en/FAQ#How_will_MaidSafeCoin_be_converted_to_safecoin_.3F) about how this may happen.
+When the SAFE Network and safecoin is launched, maidsafecoin can be exchanged 1:1 for safecoin. The exact mechanism for this is not clear, but will probably be through a burn mechanism. The safenetwork site has some [more information](https://safenetwork.tech/safecoin/#what-is-maidsafecoin) about how this may happen.
 
 There was a lot of controversy over the initial sale of maidsafecoin. If the controversy of the presale is important to you it's best to research yourself, but I'm leaving it alone here. Perhaps the judgment of the people who organized it should be questioned, which may flow on to their technical judgment in creating the SAFE Network; only you can be the judge.
 
@@ -584,7 +583,7 @@ Can the individual data be attacked by sybil attacks?
 
 Yes it can, but again, it's extremely hard. The comparable 'ideal' to bitcoin voting is 'one vault one vote'. There is very little cost to starting a vault, so there's nothing to stop someone creating thousands or millions of malicious vaults and controlling the consensus mechanism that way. The issue is, they have no way to control the closeness of their nodes, so it's very difficult for them to form a close group consensus, especially if one or more people are simultaneously attempting a sybil attack, or there's significant healthy participation in the network. It also comes back to incentives - even if they could, why would they want to? They'd get more reward for utilizing the vaults as a resource than they would using them to perform malicious actions.
 
-It's worth reading more about attacks to the SAFE Network, since this is a complex topic and one that by my own confession isn't covered in adequate detail here. Check the [attacks on the SAFE Network](https://safenetwork.wiki/en/FAQ#Attacks_on_the_SAFE_Network) section of the wiki for some additional info.
+It's worth reading more about attacks to the SAFE Network, since this is a complex topic and one that by my own confession isn't covered in adequate detail here. The best place to start is [safenetwork forum](https://safenetforum.org).
 
 It's also worth reading about [Node Ageing](https://github.com/maidsafe/rfcs/blob/master/text/0045-node-ageing/0045-node-ageing.md), which affects the difficulty of joining the network and exerting authority over data.
 
@@ -596,7 +595,7 @@ This is an interesting one. Proof of burn involves 'destroying' coins forever, s
 
 It's proposed that safecoin will be issued after proof of burn of maidsafecoin (which is on the mastercoin network). This facilitates the conversion of the intermediate maidsafecoin token into safecoin.
 
-The details aren't clear exactly how this will work, since safecoin hasn't been coded yet, but there is [some info](https://safenetwork.wiki/en/FAQ#How_will_MaidSafeCoin_be_converted_to_safecoin_.3F) on the wiki.
+The details aren't clear exactly how this will work, since safecoin hasn't been coded yet.
 
 More interestingly, safecoin itself can be burned. It's the same as for bitcoin or any crypto currency - change the owner to a public key that has no known private key, and it becomes impossible to spend. This means it's possible to accidentally destroy safecoin the same way bitcoin sent to 1BitcoinEaterAddressDontSendf59kuE will never be spent.
 
@@ -961,7 +960,6 @@ It's one thing to look at SAFE Network from the perspective of a bitcoiner, but 
 To properly understand the SAFE Network, the following resources are good places to start:
 
 * [Source code](https://github.com/maidsafe)
-* [Wiki](https://safenetwork.wiki/en/Main_Page)
 * [Forum](https://safenetforum.org/)
 * [Primer](https://maidsafe.net/#safePrimer)
 * [Website](http://maidsafe.net/)
