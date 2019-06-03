@@ -3,7 +3,7 @@ layout: post
 title:  "SAFE Network explained using bitcoin terminology"
 author: "Ian Coleman"
 date:   2016-05-05 00:00:00 +0000
-updated: 2017-10-06 00:00:00 +0000
+updated: 2019-06-03 00:00:00 +0000
 categories: bitcoin
 ---
 Read in [English](#), [中文](https://maxweng.github.io/safe-network-explained.github.io/)
@@ -72,7 +72,7 @@ The SAFE Network addresses the same problem as the blockchain, namely that of co
 
 With bitcoin and blockchains, every node of the network has a full copy of all data on the network. As new data is added to the network, every node keeps a copy of that data.
 
-Safe keeps only a few copies of each piece of data on the network. Each piece of data is allocated a group of nodes (about 30) by the network to keep watch over the integrity of that piece of data. Changes to that data can only be made if there's consensus by a supermajority of the group (about 80%) as to the true state of the data. Because only that relatively small group of nodes must agree on the true state of the data, safe is much more efficient than bitcoin.
+Safe keeps only a few copies of each piece of data on the network. Each piece of data is allocated a group of nodes (currently this is 8 nodes) by the network to keep watch over the integrity of that piece of data. Changes to that data can only be made if there's consensus by a supermajority of the group (about 66%) as to the true state of the data. Because only that relatively small group of nodes must agree on the true state of the data, safe is much more efficient than bitcoin.
 
 There is some doubt about how large groups should be, is this secure, why not more, why not less? Rather than jump to deriving this number by proof, take a moment to consider what is being achieved by the consensus rules of both bitcoin and safe: data should not be vulnerable to being lost, corrupted, or incorrectly modified. If that group of nodes can be manipulated (hacked or bribed etc), the data they control would not be considered secure. This concern is addressed by the first part of the phrase, 'close' group consensus.
 
@@ -85,6 +85,8 @@ For more reading about consensus using close groups rather than a blockchain, it
 Another important development to understand is how to balance the conflicting goals of 'easily starting a node' and 'enforcing security against group targeting'. This is described in the [Node Ageing RFC](https://github.com/maidsafe/rfcs/blob/master/text/0045-node-ageing/0045-node-ageing.md), and depends on the [data chains feature](https://github.com/maidsafe/rfcs/blob/master/text/0029-data-chains.md/0029-data-chains.md). These two ideas work together to form an additional layer of security to the close group consensus algorithm.
 
 In the same way the blockchain was the key innovation that allowed the realization of bitcoin, close group consensus is the key innovation that allows safe to provide the same functionality but with vastly improved efficiency.
+
+Edit: there's now a distinction between the nodes *storing* data (still called a close group) and the nodes forming *consensus* for changes to data (now called Elders). Consensus is now formed by the oldest nodes in the section using an algorithm called PARSEC. The concept of 'closeness' and 'grouping' is still used heavily throughout the data lifecycle despite the recent separation of concerns between storage and consensus. This is covered in more detail in [RFC-0056 Secure Message Delivery](https://github.com/maidsafe/rfcs/blob/master/text/0056-secure-message-delivery/0056-secure-message-delivery.md), [RFC-0058 Reliable Message Delivery](https://github.com/maidsafe/rfcs/blob/master/text/0058-reliable-message-delivery/0058-reliable-message-delivery.md) and [RFC-0049 PARSEC](https://github.com/maidsafe/rfcs/blob/master/text/0049-parsec/0049-parsec.md).
 
 [Back to Table Of Contents](#blockchain_toc)
 
@@ -108,7 +110,7 @@ Self-encryption and chained close group consensus is how the SAFE Network retain
 
 Read more about [self-encryption on github](https://github.com/maidsafe/self_encryption/blob/master/README.md).
 
-Read more about chained close group consensus in [the vault repository](https://github.com/maidsafe/safe_vault/blob/87c64d6c74a403629b48d34bee9508706ca083b9/README.md#flows).
+Message flow is described in [RFC-0056 Secure Message Delivery](https://github.com/maidsafe/rfcs/blob/master/text/0056-secure-message-delivery/0056-secure-message-delivery.md) and [RFC-0058 Reliable Message Delivery](https://github.com/maidsafe/rfcs/blob/master/text/0058-reliable-message-delivery/0058-reliable-message-delivery.md).
 
 [Back to Table Of Contents](#proof-of-work-for-verification_toc)
 
@@ -124,15 +126,15 @@ This is one of the biggest advantages safe has over bitcoin - transactions are e
 
 On the bitcoin blockchain, bitcoins are grouped into outputs, and do not exist as discrete entities. For example, the reward for mining a block is currently 25 BTC, but this 25 BTC is represented in a single transaction. 25 coins, 1 piece of data.
 
-Quite differently, every safecoin is a discrete piece of data with its own location on the network (just like regular data on the SAFE Network). 25 safecoins would be 25 different bits of data on the SAFE Network.
+Quite differently, every safecoin balance is stored in a discrete piece of data with its own location on the network (just like regular data on the SAFE Network). 25 safecoins could be stored in 25 different balances (bits of data) on the SAFE Network (or in a single balance in one location, or hundreds of small balances widely spread on the network).
 
 This fundamentally different way of representing tokens is how safecoins can be transferred so quickly and with such high confidence. The transfer mechanism of safecoin is quite different to that of bitcoin.
 
-A safecoin is a special package of data (called mutable data) which contains details of the current owner (among other things). To transfer ownership of that coin, the current owner must verify their ownership (similar to a signature in a bitcoin transaction). If they own the coin, they are allowed to change the data for the coin's current owner to the new owner. The 'current owner' of a safecoin is like the utxo of a bitcoin transaction. Safecoins ownership can be traced only to the current owner, whereas bitcoins ownership can be traced back to the initial generation, which may include hundreds or thousands of owners.
+A safecoin is a special package of data (called a CoinBalance) which contains details of the current owner and the safecoin value (ie how many safecoins). This data object is very similar to a bitcoin unspent transaction output, except that the history is not included. To transfer safecoin the current owner must verify their ownership (similar to a signature in a bitcoin transaction). Safecoin transactions move coins from the current owner to a new owner. Safecoin ownership can be traced only to the current owner, whereas bitcoins ownership can be traced back to the initial generation, which may include hundreds or thousands of owners.
 
-Transferring safecoin is a single atomic data event on the SAFE Network. Once completed, it stays that way until the new owner decides to change it. There is no way it can be reversed, unlike bitcoin which can have changes to the mempool or even orphaned blocks.
+Transferring safecoin is an atomic data event on the SAFE Network. Once completed, it stays that way until the new owner decides to change it. There is no way it can be reversed, unlike bitcoin which can have changes to the mempool or even orphaned blocks.
 
-Compare the cost of completing a transaction. In bitcoin, the cost of a transaction is the size of the transaction relative to the entire block, multiplied by the cost of the proof of work to generate the block. In safecoin, the cost is the resources required to obtain consensus for the piece of data (a close group of nodes must reach consensus then store the change) multiplied by the number of coins being spent. Safecoin transactions are extremely efficient compared to bitcoin transactions because close group consensus is much cheaper and faster than generating a proof of work.
+Compare the cost of completing a transaction. In bitcoin, the cost of a transaction is the size of the transaction relative to the entire block, multiplied by the cost of the proof of work to generate the block. In safecoin, the cost is the resources required to obtain consensus to reduce the CoinBalance of the sender and increase the CoinBalance of the recipient. Safecoin transactions are extremely efficient compared to bitcoin transactions because close group consensus is much cheaper and faster than generating a proof of work.
 
 [Back to Table Of Contents](#double-spend-prevention_toc)
 
@@ -144,11 +146,11 @@ However, the actual transaction included in the blockchain depends on what the m
 
 This highlights an interesting property of bitcoin - the 'true' state of the network can only be determined from the blockchain, which may be quite old, in some cases over an hour. This poses a challenging problem for merchants wanting to accept immediate payment, such as from in-store customers.
 
-How does the SAFE Network compare in terms of truth and handling 'race' situations? If a client announces a change to part of the network and a different change simultaneously to another part of the network, how does this resolve?
+How does the SAFE Network compare in terms of truth and handling 'race' situations? If a client announces a change to part of the network and a conflicting change simultaneously to another part of the network, how does this resolve?
 
-When data is to be changed on the SAFE Network, a quorum (ie subset) of the close group nodes must agree to the change. If the client simultaneously announces different data so two thirds of the nodes in the group receive one version but a third receive a different version, consensus will not be reached and the change will not be made.
+When data is to be changed on the SAFE Network, a quorum (ie subset) of the close group nodes must agree to the change. If the client simultaneously announces different data so half of the nodes in the group receive one version but half receive a different version, consensus will not be reached and the change will not be made.
 
-It's actually a bit more subtle than that, depending on whether the data is mutable or immutable, a put or a post; but those details begins to blur the concept so it's best to research that yourself.
+It's actually a bit more subtle than that, depending on whether the data is mutable or immutable, a put or an append; but those details begins to blur the concept so it's best to research that yourself.
 
 There are some relevant articles on the blog -
 [multiple store/delete](https://blog.maidsafe.net/2014/02/23/multiple-storedelete/)
@@ -165,11 +167,11 @@ In safe, the resolution of a transaction should be extremely fast, typically les
 
 A bitcoin transaction is represented as an _addition_ of data to the blockchain. Since adding data requires a new block, this is both time consuming and expensive. During the time between a transaction announcement on the network and its acceptance into the blockchain, the receiver cannot be sure if the transaction will be confirmed by inclusion in a block, hence the term 'zero confirmation' transaction and the associated wariness.
 
-A safecoin transaction is represented as a _modification_ to an existing piece of data, namely by changing the details for the current owner of the coin. The change to the data is performed by the network in an atomic operation, subject to approval by close group consensus. Once the close group consensus is agreed, the change is made and is final.
+A safecoin transaction is represented as a _modification_ to an existing piece of data, namely by deducting or crediting a CoinBalance. The change to the data is performed by the network in an atomic operation, subject to approval by close group consensus. Once the close group consensus is agreed, the change is made and is final.
 
 The SAFE Network does not have a concept of zero confirmations (or confirmations at all) and transactions are final once committed to the network, which happens as soon as the close group nodes have reached consensus on the change (typically less than a second).
 
-To better understand how transactions are made on the SAFE Network, a good place to start is the entire [mutable data](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0047-mutable-data/0047-mutable-data.md) rfc.
+To better understand how transactions are made on the SAFE Network, a good place to start is the [Safecoin transfer](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#safecoin-transfer) section of RFC-0057 Safecoin Revised.
 
 [Back to Table Of Contents](#zero-confirmations_toc)
 
@@ -179,33 +181,9 @@ Bitcoin incentivizes participation in proof of work by rewarding it with new coi
 
 How are new safecoins generated and how are the incentives for network participation structured?
 
-New safecoins are generated by 'proof of resource'.
+The reward mechanism for safecoin is currently being developed but will depend on vaults doing useful activities for the ongoing functionality of the network, such as storing and retrieving data and participating in consensus.
 
-Firstly, consider bitcoin. If a user can provide a valid proof of work, the network will allocate the user with new coins. The number of coins is determined by the rules of the network; if the rules are not followed the proof of work is invalid. Safecoin is issued when a user provides a valid proof of resource. Clearly we need to understand what proof of resource means and how it compares to proof of work.
-
-Proof of work proves the user expended some certain amount of computation (it's a statistical thing but still creates valid proofs). Proof of resource proves the user is able to provide a certain amount of resource (storage, bandwidth, computation).
-
-Both proofs are very easy to verify but difficult to create. How does proof of resource achieve this?
-
-The idea is to prove a node can supply resource without actually having to supply it. This is like proof of work where a node can prove it did work without having every other node actually do the work.
-
-The proof of resource algorithm is surprisingly simple and clever.
-
-* A checking group of nodes creates a random string
-* This random string is sent encrypted to all nodes that hold the data
-* Each data holder node takes this string, appends it to the original data, and hashes the result
-* The result from each data holder node is collected and decrypted by the checking group and results of all holders are compared
-* If any holder node returns a different result, it is considered to be compromised and is deranked
-
-This should begin to illustrate how important the concept of close group consensus is in the SAFE Network. It forms the basis for basically every single operation on the network.
-
-The clever bit is the nodes doing the checking don't need to have the data in order to check it. They rely on the data having been initially stored in a specific way (ie consensus across a close group) which allows it to check on it again in the future without needing to have a copy of the data itself.
-
-Read more about [proof of resource](https://medium.com/safenetwork/proof-of-resource-on-the-safe-network-192d5c951ebc) on the safenetwork blog.
-
-The information in the [safecoin](https://github.com/maidsafe/rfcs/blob/cd47937ebf053e90bde20f18eced2866854e8234/text/0012-safecoin-implementation/0012-safecoin-implementation.md) rfc is also valuable.
-
-There's also a [safecoin whitepaper](http://docs.maidsafe.net/Whitepapers/pdf/Safecoin.pdf) with more information.
+A good place to see the current thinking is RFC-0057 Safecoin revised, especially the [Farming](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#farming) section and the [Farming reward calculation](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#farm-reward-calculation) section.
 
 [Back to Table Of Contents](#mining-block-reward_toc)
 
@@ -217,11 +195,9 @@ What is the monetary policy of safecoin and how is it enforced?
 
 Safecoin will never have more than 4.3 billion coins (2^32 coins).
 
-In the section on double spend prevention, it's mentioned that safecoins are a particular type of data structure. Part of that data structure is the 'name' of the coin, which is limited to 32 bits.
+The mechanism for setting the maximum total coins is explained in RFC-0057 Safecoin revised in the [Farming](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#farming) section.
 
-This name is allocated by the network and cannot be manipulated by the user.
-
-Since the network is coded to only recognize 2^32 possible safecoin names, there can never be more than that many coins.
+The main point of interest is that as the network grows and splits into many sections, each section is responsible for a portion of the total coins. This means that an attack on any section would only affect the possible number of coins that section is responsible for, reducing the benefit of the attack as the network grows.
 
 [Back to Table Of Contents](#deflation-scarcity-and-monetary-policy_toc)
 
@@ -237,6 +213,8 @@ Recycling safecoin means as long as people are actively using the network there 
 
 Recycling is sometimes said to affect the economics of the SAFE Network, because it allows the same coin to be 'minted' multiple times. Some people say this makes safecoin inflationary, but since there can never be more than 4.3B coins this isn't really true. It's like saying bitcoin is inflationary because the miners continue to receive coin from fees - in both bitcoin and the SAFE Network the coins all come from the same limited resource pool, which makes both coins deflationary.
 
+Edit: this has had a revision in RFC-0057 Safecoin revised in the [Farm reward calculation](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#farm-reward-calculation) section; there is no longer a mechanism for recycling coins. However this is temporary and the exact future mechanism is still being designed and decided. A high degree of divisibility has also been added which assists in the long term sustainability of the network as it makes it viable to transact with smaller amounts.
+
 [Back to Table Of Contents](#transaction-fees-and-long-term-sustainability_toc)
 
 ### Difficulty / target
@@ -245,18 +223,13 @@ An amazing property of the bitcoin network is how it automatically adjusts the d
 
 What happens as the SAFE Network grows and more resources join? How does this affect the generation of new coins and the incentives for new users joining the network?
 
-When a user completes a proof of resource they're entitled to create a new coin. The network generates a 32 bit 'name' for the newly generated coin. The network then checks if the coin for that name already has an owner. If it does, the mining attempt (or to use the safe term, farm attempt) is unsuccessful. If there's no user for the coin, it's created and assigned to the user who earned it.
+The safe network grows and shrinks as vaults provide more or less resources depending on their economic viability and value to the network.
 
-There's a similarity between undertaking proof of resource on the SAFE Network and undertaking a proof of work when mining bitcoin. Most proof of work yields a result above the target, and no coins will issued for that particular proof of work.
+This is governed by [Section health](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#section-health), which aims to maintain a minimum ratio of 50% healthy vaults (ie have spare capacity). As the ratio increases there will be more vaults added to the section.
 
-The same idea applies to proof of resource. A proof of resource is simply a chance to earn a coin, not a guarantee. The proof must be converted to a coin by a mechanism called the farm rate.
+This flows on to affect the price of storage (known as the [StoreCost](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#establishing-storecost)) which also affects the farming reward, both of which are subject to further design and changes.
 
-A node is given an ongoing score by the network for how reliable it is. This score is based on proof of resource, and is called a 'ranking'. This score determines how rapidly _the node_ can generate new safecoin. Additionally, there is a _network rate_ which determines how much coin overall can be generated by all nodes on the network. The network rate is similar to the difficulty of bitcoin; it's the mechanism by which the supply and demand of resources is kept balanced.
-
-At the current time there's no implementation or particularly robust design docs for these mechanisms, which is one of the indicators of how much work remains to be completed on safe, and how challenging the prior work has been to consume so much time in development.
-
-Read more about farm rate on
-[the safenetwork website](https://safenetwork.tech/faq/#about-farming).
+The main control mechanism in the network is allowing or disallowing new vaults. This affects the amount of spare resources available, as well as the capacity to store more data and serve more users. The amount of spare resources feeds into pricing and rewards, so is a significant factor in how the network grows and adapts to variation in usage.
 
 [Back to Table Of Contents](#difficulty--target_toc)
 
@@ -267,6 +240,8 @@ Bitcoin was easy to generate when the network started, because there weren't man
 Are there similar situations that will arise in safe which may undermine the original goals?
 
 There may be. Since there are only 4.3B coins available, it could become very difficult to claim a coin as an individual. This may lead to pooled farming, but it's hard to know for sure.
+
+The likelihood of this happening is greatly reduced with the introduction of [RFC-0057 Safecoin revised](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md) which has a high degree of coin divisibility. This should allow rewards to be made regularly (rather than sporadicaly) and the need for smoothing by pools is greatly reduced.
 
 I think speculation about the pitfalls of the SAFE Network is important, but am unable to provide much insight on this myself. If you have ideas about it, please add a comment on the discussion at forum by clicking the link at the very bottom of all this. It's certainly an interesting topic, but one that's hard to provide concrete knowledge about.
 
@@ -293,8 +268,6 @@ On a related tangent, [data chains](https://metaquestions.me/2016/07/20/data-cha
 Imagine collusion between data centers. They may be able to destroy individual bits of data, but they wouldn't know what they were destroying. They wouldn't be able to modify it in a meaningful way because they wouldn't be able to decrypt and re-encrypt the data without the keys, which only the owner has.
 
 Imagine hacks to data centers. This could unleash a vast number of malicious nodes which could cause mass deranking and huge computational load managing the resulting churn.
-
-The network has a technique (based on the sigmoid curve) to minimize centralization. This technique is unseen in blockchains. The algorithm results in diminishing returns to farmers that supply significantly above or below the average of other vaults, which creates strong incentives to maintain a decentralization of resources on the network (especially in the xor space). Minimizing centralization of the xor space is essential to maintaining the security of the network. This is discussed on the MaidSafe blog post about [keeping safecoin decentralised](https://blog.maidsafe.net/2015/02/06/keeping-safecoin-decentralised/).
 
 There are different forms of centralization that may happen in decentralized networks, each with their own possible motivators, severity and impact.
 
@@ -383,16 +356,6 @@ What similar strange quirks of nomenclature can be found in the SAFE Network?
 
 Proof of resource is the algorithm to determine nodes are honest. Farming is the process of obtaining new safecoins, and may also be used to refer to the algorithm that determines when new safecoins are issued.
 
-* farm rate vs network rate
-
-Farm rate is the rate at which a node may attempt to generate new coins. Nodes that are positive contributors to the network may attempt to mine more often than nodes that are negative contributors.
-
-Network rate is the rate at which the network releases new coins.
-
-* naming of personas
-
-PmidManager vs MpidManager is a bit of esoteric naming, among many others. Go on, get yourself confused reading the [safe vault conventions](https://github.com/maidsafe/safe_vault/blob/bae659e579a56e145159805ce87770174f2d678b/docs/conventions.md)
-
 There are surely others but these are some of the main ones. My main tip for novices is to make sure the use of 'maidsafe' and 'SAFE Network' are clear and consistent.
 
 Check out [How It Works](https://safenetwork.tech/how-it-works/) on the safenetwork website for more clarity.
@@ -437,7 +400,7 @@ Safe is perhaps a competitor, depending how the relation is framed. Bitcoin is s
 
 The relationship and classification of safe relative to bitcoin depends on the perspective of each individual. Personally, in my heart I consider it a competitor first, with the possibility that it may replace bitcoin. But in my head I accept safe will more realistically be a 'complement' to bitcoin, operating side by side and filling a different-yet-similar purpose.
 
-Another consideration here is that safecoin is simply a 'specific type of mutable data on the SAFE Network'. Other generic types of mutable data can (and will) be created on the SAFE Network, which could be competing with or complementing safecoin. It may be that safecoin is not the dominant currency on the SAFE Network, it all depends on adoption from users. One thing in safecoins favor is it will be the only currency that can be used to put data on the network, giving it a strong advantage over other mutable-data-as-currency.
+Another consideration here is that safecoin is simply a 'specific type of data on the SAFE Network'. Other generic types of data can (and will) be created on the SAFE Network, which could be competing with or complementing safecoin. It may be that safecoin is not the dominant currency on the SAFE Network, it all depends on adoption from users. One thing in safecoins favor is it will be the only currency that can be used to put data on the network, giving it a strong advantage over other currency that lives on the SAFE network.
 
 [Back to Table Of Contents](#altcoin_toc)
 
@@ -449,15 +412,13 @@ Is safecoin cash? How does it compare to bitcoin for transferring wealth on the 
 
 Safecoin is arguably better digital cash than bitcoin.
 
-Safecoin is more anonymous, since once you hand it to another peer on the network, the record of prior ownership disappears, unlike bitcoin where the transaction remains recorded forever. Zerocash has shown that bitcoin can be made anonymous, but as it stands today, the anonymity of safecoin is far stronger than bitcoin (at least as designed, since there is no implementation). The keen observers may say that safecoins store the current _and previous_ owner, so you aren't anonymous until two spends happen, but the receiver could spend the coins to them self, making them self both the current and previous owner; this would remove the original sender from the previous sender and ensure their anonymity.
+Safecoin is more anonymous, since once you hand it to another peer on the network, the record of prior ownership disappears, unlike bitcoin where the transaction remains recorded forever. Zerocash has shown that bitcoin can be made anonymous, but as it stands today, the anonymity of safecoin is far stronger than bitcoin (at least as designed, since there is no implementation).
 
-Safecoin is irreversible, since the only way to transfer ownership is to provide the network with a valid signature as the current owner of the coin. If you change the owner of the coin to a key you don't control, you can't reverse that action. Best of all, it's instantly irreversible, whereas bitcoin is on irreversible once included in a block (usually several blocks deep in the chain), which may be hours after the transaction was initially made.
+Safecoin is irreversible, since the only way to transfer ownership is to provide the network with a valid signature as the current owner of the coin. If you change the owner of the coin to a key you don't control, you can't reverse that action. Best of all, it's instantly irreversible, whereas bitcoin is only irreversible once included in a block (usually several blocks deep in the chain), which may be hours after the transaction was initially made.
 
-Safecoin is simple to use, equally simple as bitcoin since it uses the same underlying signing and crypto techniques for ownership. This means transfer requires knowing the destination to send to which can be scanned from a QR code, emailed, scanned via NFC, faxed, whatever. 'Transfer of information' is equal to 'transfer of wealth' in both safecoin and bitcoin, no matter the medium used for transfer. Safecoin is still under development so it remains to be seen how transfer works in anger, and whether there's similar protocols to the Bitcoin Payment Protocol specified in BIP70-73, but there's no reason why safecoin cannot be as simple and robust as bitcoin for making payments. Considering changes to bitcoin such as replace-by-fee, safecoin may even be considered slightly simpler than bitcoin, at least in terms of intuitive expectation for how it behaves.
+Safecoin is simple to use, equally simple as bitcoin since it uses similar underlying signing and crypto techniques for ownership. This means transfer requires knowing the destination to send to which can be scanned from a QR code, emailed, scanned via NFC, faxed, whatever. 'Transfer of information' is equal to 'transfer of wealth' in both safecoin and bitcoin, no matter the medium used for transfer. Safecoin is still under development so it remains to be seen how transfer works in anger, and whether there's similar protocols to the Bitcoin Payment Protocol specified in BIP70-73, but there's no reason why safecoin cannot be as simple and robust as bitcoin for making payments. Considering changes to bitcoin such as replace-by-fee, safecoin may even be considered slightly simpler than bitcoin, at least in terms of intuitive expectation for how it behaves.
 
 Safecoin is peer to peer, there's no middle-man in charge of the transaction. Nobody can prevent safecoin being transferred from one person to another. Safecoin you own is yours and nobody can take it or prevent you from spending it.
-
-To better understand the properties of safecoin as a form of digital cash, it's best to read about how [mutable data](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0047-mutable-data/0047-mutable-data.md) works, since safecoin is a particular type of mutable data.
 
 [Back to Table Of Contents](#digital-cash_toc)
 
@@ -505,7 +466,7 @@ Safe uses a quorum of a supermajority of nodes in the close group to ensure data
 
 ### Blocksize
 
-Bitcoin implemented a change early on to restrict spam on the network. This is the now-infamous blocksize limit of 1MB.
+Bitcoin implemented a change early on to restrict spam on the network. This is the now-infamous blocksize limit of 1MB (now changed to block weight with a lot of nuance attached).
 
 This introduces two important considerations. How does the SAFE Network manage spam? How does the SAFE Network implement changes when a bottleneck arises?
 
@@ -531,9 +492,9 @@ How does the SAFE Network scale, and what are the likely bottlenecks of the netw
 
 The most obvious one, which was a complaint of similar systems such as freenet, will be bandwidth and latency. If the network cannot achieve efficiency in delivering and storing data, it will not be popular. There are strict physical limits to the speed at which a global network can operate, light simply won't travel through fibre optic any faster. Safe will need to overcome that constraint, especially given the multi-hop non-geographic chained-request method in use (like TOR) which can drastically increase the latency of the network. There's [a good analysis and discussion of this bottleneck](https://safenetforum.org/t/hardware-network-communications-speeds-lags-bottlenecks/6021) on the SAFE Network forum.
 
-One of the ways this is resolved is called opportunistic caching. The idea is that popular data is cached close to the source requesting it, so any future requests can be served much more rapidly. Caching is well known to be an extremely prickly subject, one that I'm not going to cover here; all I want is to bring awareness to this feature so if it's something you're interested in there's a stepping-off point to your search.
+One of the ways this is resolved is with caching. The idea is that popular data is cached close to the source requesting it, so any future requests can be served much more rapidly. Caching is well known to be an extremely prickly subject, one that I'm not going to cover here; all I want is to bring awareness to this feature so if it's something you're interested in there's a stepping-off point to your search.
 
-Another issue around scaling for both networks is participation. In bitcoin this is the problem of having enough 'full nodes'. In the SAFE Network this will probably be problem of having enough 'vaults' (although slightly different since a vault is like both bitcoins full nodes and a miners). How do you ensure that people participate and how do you keep them involved once they begin?
+Another issue around scaling for both networks is participation. In bitcoin this is the problem of having enough 'full nodes'. In the SAFE Network this will probably be problem of having enough 'vaults' (although slightly different since a vault is like both bitcoins full nodes and miners). How do you ensure that people participate and how do you keep them involved once they begin?
 
 There is no simple answer to this. A few points can be posited, but ultimately participation behavior can only be observed once the network is running. One advantage of safe is that to become a vault requires no overhead; simply download and start the software. Becoming a full node in bitcoin requires downloading the entire blockchain before the node can be a meaningful member of the network. True, there is some overhead to becoming a vault in that it's required to gain some level of authority from the network, but this is extremely lightweight and essentially zero cost, especially compared to downloading the blockchain.
 
@@ -575,9 +536,11 @@ There are two parts to this. The overall network consensus rules (such as how co
 
 Can the network rules be attacked by sybil attacks?
 
-This would be possible but extremely difficult. Let's look at what it would take to change one of the rules. Imagine changing coin names from 32 bits to 33 bits, thus doubling the coin supply.
+This would be possible but extremely difficult.
 
-The attacker would have to control enough of the network that 'old-style 32 bit coins' with 32 bit names were ruled to be invalid. This means an attacker needs to obtain consensus over every coin (a supermajority of all close groups for every coin). They'd have to control much more than 50% of the network, and have their voting power evenly distributed (even distribution is probably a reasonable assumption though, given how vault naming works). Controlling much more than 50% of the network should be extremely difficult, assuming there's healthy participation in the network - it would be much more difficult than the 51% attack on bitcoin.
+PARSEC is the algorithm used for consensus and this requires controlling at least two thirds of all participants. This is extremely difficult to achieve and is explored in the forum topic about [the google attack](https://safenetforum.org/t/analysing-the-google-attack/18621) (although that topic uses 50% instead of 66%).
+
+The key question is would the cost of the attack be worth the benefit? The answer is almost always no, especially for a reasonably large or old SAFE network.
 
 Can the individual data be attacked by sybil attacks?
 
@@ -585,7 +548,7 @@ Yes it can, but again, it's extremely hard. The comparable 'ideal' to bitcoin vo
 
 It's worth reading more about attacks to the SAFE Network, since this is a complex topic and one that by my own confession isn't covered in adequate detail here. The best place to start is [safenetwork forum](https://safenetforum.org).
 
-It's also worth reading about [Node Ageing](https://github.com/maidsafe/rfcs/blob/master/text/0045-node-ageing/0045-node-ageing.md), which affects the difficulty of joining the network and exerting authority over data.
+It's also worth reading about [Node Ageing](https://github.com/maidsafe/rfcs/blob/master/text/0045-node-ageing/0045-node-ageing.md), which affects the difficulty of joining the network and exerting authority over data and consensus.
 
 [Back to Table Of Contents](#51-and-sybil-attacks_toc)
 
@@ -597,7 +560,11 @@ It's proposed that safecoin will be issued after proof of burn of maidsafecoin (
 
 The details aren't clear exactly how this will work, since safecoin hasn't been coded yet.
 
-More interestingly, safecoin itself can be burned. It's the same as for bitcoin or any crypto currency - change the owner to a public key that has no known private key, and it becomes impossible to spend. This means it's possible to accidentally destroy safecoin the same way bitcoin sent to 1BitcoinEaterAddressDontSendf59kuE will never be spent.
+More interestingly, safecoin itself probably cannot be burned.
+
+The [Safecoin transfer](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#safecoin-transfer) section of RFC-0057 says that if the destination for a transfer doesn't exist "the source balance will be refunded".
+
+It would be possible to create a safecoin account with a temporary private key and then discard it so the received coins can never be spent, but it's not possible to transfer safecoin to a non-existing account.
 
 [Back to Table Of Contents](#proof-of-burn_toc)
 
@@ -609,15 +576,13 @@ How divisible is safecoin?
 
 This is one of those surprisingly-not-so-simple questions to answer.
 
-Because of the structure of safecoins as discrete coins, it's not easy to simply allocate some-portion-here and some-portion-there like you do with outputs in a bitcoin transaction. This would scatter the data for the coin in ways that cannot be easily retrieved.
-
 There's a proposal for how divisibility will be achieved, but no agreement.
 
 Rather than make things up I'll leave this section in a state of ambiguity, which also serves to reflect the state of this issue.
 
 Have a look at [safecoin management](https://github.com/maidsafe/rfcs/blob/master/text/0012-safecoin-implementation/0012-safecoin-implementation.md#safecoin-management) in the rfc, and at this [long conversation about divisibility](https://safenetforum.org/t/safecoin-divisibility/4806) on the forum.
 
-I feel this will be one of those issues similar to the bitcoin blocksize debate. It could easily get out of hand. It's obvious that 4.3B atomic units is nowhere near enough for a modern world which already has IPV4 problems (coincidentally also a 2^32 space).
+It's also worth looking at [RFC-0057 Safecoin revised](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md) and [the related forum topic](https://safenetforum.org/t/rfc-57-safecoin-revised/28660) for more discussion about divisibility.
 
 [Back to Table Of Contents](#divisibility_toc)
 
@@ -629,7 +594,7 @@ How does safe make it simple to receive safecoin?
 
 Since safecoin has not yet been implemented, this is not totally clear. What is known is that a public key will be used to designate the current owner of the safecoin, which is a 256 bit value. This requires the receivers public key to be communicated somehow to the sender. The scheme for encoded public keys (if any) is not yet clear.
 
-To obtain a better understanding of how the owner of a coin is designated, check the [detailed design](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0047-mutable-data/0047-mutable-data.md) of mutable data in the rfc.
+The latest proposal is that ed25519 keys will be used for BLS signatures. More information about this can be found in the [Overview](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#overview) of RFC-0057.
 
 [Back to Table Of Contents](#addresses_toc)
 
@@ -643,7 +608,7 @@ Any coin can only be transferred if the signature of the transaction matches tha
 
 This means if the coin is transferred to someone else, the previous owner can no longer make changes to that coin. The change is irreversible.
 
-An interesting point on this is that unlike bitcoin which must have the transaction included in a block before it's considered irreversible, safecoin is instantly irreversible.
+An interesting point on this is that unlike bitcoin which must have the transaction included in a block before it's considered irreversible, safecoin is immediately irreversible.
 
 [Back to Table Of Contents](#irreversible_toc)
 
@@ -660,8 +625,6 @@ The SAFE Network can function as a single epic server for static web content. Wi
 Bootstrapping the network. A concern for peer to peer networks is how to initially find other peers. This introduces a single point of failure and control. Bitcoin used IRC, safe uses either the last known set of nodes it connected to, or falls back to a hardcoded list.
 
 Quirks of the genesis block. Are there any quirks to starting the SAFE Network? Not especially. There's no time-factor in the SAFE Network, so the idea of genesis is far less relevant. This is also true of not having blocks; sequential ordering doesn't matter in the SAFE Network, despite being a critical component in the operation of bitcoin and the blockchain.
-
-There is one quirk: consider that 'safecoin can only be mined by storing data' but 'storing data requires safecoin'. How can this chicken and egg problem be solved? There's a proposal which can be read in the section titled [bootstrap with clients](https://github.com/maidsafe/rfcs/blob/cd47937ebf053e90bde20f18eced2866854e8234/text/0012-safecoin-implementation/0012-safecoin-implementation.md#bootstrap-with-clients) in the safecoin implementation rfc.
 
 [Back to Table Of Contents](#genesis-block_toc)
 
@@ -687,7 +650,7 @@ The source code has unit tests.
 
 There are test networks currently operating on closed networks under the control of the maidsafe organization. This was recently opened up temporarily to public users, and more tests involving the public will continue into the future. Data on these test networks is frequently wiped so they aren't considered useful for public consumption at this stage.
 
-Savvy users may be able to set up their own isolated SAFE Network, but it's not documented how to do this and is not considered a reasonable undertaking at this point in time.
+Savvy users may be able to set up their own isolated SAFE Network, but it's not documented how to do this.
 
 I imagine in the future there will be a complementary testnet like with bitcoin, including a valueless test safecoin token. We'll have to wait and see what happens with the development, and this is certainly one area of the SAFE Network which would benefit from additional contributions.
 
@@ -741,21 +704,7 @@ Bitcoin wallets are not inherent to the bitcoin network or blockchains. Wallets 
 
 How does a user keep track of their safecoins on the SAFE Network?
 
-This is an interesting question, because of the inherently different representation of coins on the bitcoin and SAFE Network. There are built in tracking mechanisms in the SAFE Network, read about them on the [safecoin management](https://github.com/maidsafe/rfcs/blob/cd47937ebf053e90bde20f18eced2866854e8234/text/0012-safecoin-implementation/0012-safecoin-implementation.md#safecoin-management) section of the safecoin implementation rfc.
-
-But let's do a somewhat ludicrous thought experiment in the meantime.
-
-Bitcoin wallets look at every transaction ever made and find the ones that are useful to it and combine them all into a tracking mechanism called a wallet. Ludicrous!
-
-The equivalent on the SAFE Network (if a tracking mechanism were not already built in) would involve looking at every individual safecoin (all 4.3B of them), and seeing which ones belong to me. Also ludicrous!
-
-Which one sounds crazier? I don't know myself! Let's wait until there's an official implementation of the network and safecoin and wallets, and in the meantime read whatever documentation may be available.
-
-There are some other considerations which can be made.
-
-One is that when I'm paid, instead of detecting a single transaction like in bitcoin, I will need to detect x number of coins being transferred into my name. This is x actions instead of one. This could get quite interesting.
-
-Another issue is, how does a wallet know when it has received new coins? Unless the wallet is listening to every coin, it may not be aware that a coin on some part of the network has been modified to belong to it. This seems like it will be solved by having the management of coins be performed by the network itself, rather than the client. Read more about [account management](https://github.com/maidsafe/rfcs/blob/1cd4ed22709fed673f5ce51c1d861d879abd7aec/text/0012-safecoin-implementation/0012-safecoin-implementation.md#account-management) in the safecoin implementation rfc.
+The SAFE Network keeps track of coins using a data object called a CoinBalance. The lifecycle of this data type is covered in the [CoinBalance creation](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#coinbalance-creation) and [Account creation](https://github.com/maidsafe/rfcs/blob/master/text/0057-safecoin-revised/0057-safecoin-revised.md#account-creation) sections of RFC-0057.
 
 [Back to Table Of Contents](#wallets_toc)
 
@@ -767,19 +716,13 @@ How does SAFE Network handle complex permissions for the movement of data on the
 
 This is another two-parter. Immutable data does not move, so we'll ignore that here. The second part is mutable data.
 
-Mutable data will allow multisig control of coins. However, in the [detailed design](https://github.com/maidsafe/rfcs/blob/c63ff6636d0dc21d6939856cf3a32445c3855b8c/text/0047-mutable-data/0047-mutable-data.md#detailed-design) section of the mutable data rfc, it's stated that the owners field is "currently limited to one owner to disallow multisig". The current data type used for the owners field can easily be extended to multisig in the future.
-
-I personally feel this is a lost opportunity, and that a more generic scripting signature system like bitcoin should be used in mutable data. This would allow for powerful smart contracts to govern the movement of data, and facilitate extremely interesting interactions on the network. There is no doubt in my mind that mutable data will change significantly in regard to the signing logic, since this could also open the door to pay-for-computation-resource rather than just storage and bandwidth resource.
-
-The similarities and unmet potential in the design of mutable data compared with bitcoin and ethereum hint at the opportunities that may be unlocked via safecoin in the future.
-
-I think the decision to keep it simple for now is a good one, since it allows the development to focus on key components of the network rather than 'nice but not essential future stuff'. Very pragmatic, so long as it doesn't end up with a blockage to progress later due to governance issues.
+Control of mutable data will be done with BLS signatures which allow threshold signatures and signature aggregation. The exact details of what features this will enable (eg multisignature style operations) has not been detailed yet in an RFC.
 
 [Back to Table Of Contents](#multisig_toc)
 
 ### Smart contracts
 
-As discussed in the multisig section, smart contracts are a hot topic in the world of blockchains, especially ethereum and rootstock.
+Smart contracts are a hot topic in the world of blockchains, especially ethereum and rootstock.
 
 Does safe support smart contracts?
 
@@ -928,7 +871,6 @@ Here's some of the essential phrases and words for taking part in a technical co
 
 * churn
 * close group consensus
-* crust (connected rust)
 * [data chains](https://metaquestions.me/2016/07/20/data-chains-what-why-how/) - also see [the RFC](https://github.com/maidsafe/rfcs/blob/master/text/0029-data-chains.md/0029-data-chains.md)
 * distributed hash table (DHT), especially the kademlia implementation
 * farming
@@ -943,6 +885,8 @@ Here's some of the essential phrases and words for taking part in a technical co
 * vault persona
 * vault ranking
 * xor distance
+* [PARSEC](https://github.com/maidsafe/rfcs/blob/master/text/0049-parsec/0049-parsec.md)
+* BLS signatures
 
 There's also some interesting comments from prominent figures in the bitcoin and blockchain community:
 
